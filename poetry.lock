@@ -1,0 +1,23 @@
+[[package]]
+name = "lark"
+version = "1.1.2"
+description = "a modern parsing library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+atomic_cache = ["atomicwrites"]
+nearley = ["js2py"]
+regex = ["regex"]
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.9"
+content-hash = "306ee02fde4f722cdd21fa2f2b12a5ca0beee297dfc5232ea842142a9d3e4cb3"
+
+[metadata.files]
+lark = [
+    {file = "lark-1.1.2-py2.py3-none-any.whl", hash = "sha256:c1ab213fc5e2d273fe2d91da218ccc8b5b92d065b17faa5e743499cb16594b7d"},
+    {file = "lark-1.1.2.tar.gz", hash = "sha256:7a8d0c07d663da9391d7faee1bf1d7df4998c47ca43a593cbef5c7566acd057a"},
+]
