@@ -1,0 +1,8 @@
+four_digit: DIGIT~4..4
+two_digit: DIGIT~2..2
+year: four_digit
+month: two_digit
+day: two_digit
+date: year "-" month "-" day
+
+%import common.DIGIT
