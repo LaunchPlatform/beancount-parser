@@ -1,10 +1,10 @@
 METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
-metadata_value:   ESCAPED_STRING
-                | ACCOUNT
-                | CURRENCY
-                | SIGNED_NUMBER
-                | date
-                | amount
+?metadata_value: ESCAPED_STRING
+                    | ACCOUNT
+                    | CURRENCY
+                    | SIGNED_NUMBER
+                    | date
+                    | amount
                 // TODO: add tags
 metadata_item: METADATA_KEY ":" metadata_value
 metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+ [_NL]

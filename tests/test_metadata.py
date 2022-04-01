@@ -81,7 +81,7 @@ def test_parse_bad_metadata_key(metadata_key_parser: Lark, text: str):
         "USD",
     ],
 )
-def test_parse_metadata_key(metadata_value_parser: Lark, text: str):
+def test_parse_metadata_value(metadata_value_parser: Lark, text: str):
     metadata_value_parser.parse(text)
 
 
