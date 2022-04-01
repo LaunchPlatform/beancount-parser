@@ -1,0 +1,6 @@
+plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING] [COMMENT] [_NL]
+
+%import common.ESCAPED_STRING
+%import common.NEWLINE -> _NL
+
+%import .comment.COMMENT

@@ -6,11 +6,11 @@ from beancount_parser.parser import GRAMMAR_FOLDER
 
 
 @pytest.fixture
-def option_parser() -> Lark:
+def plugin_parser() -> Lark:
     return Lark(
         """
-    start: option
-    %import .option.option
+    start: plugin
+    %import .plugin.plugin
     %ignore " "
     """,
         import_paths=[GRAMMAR_FOLDER],
@@ -20,22 +20,22 @@ def option_parser() -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        'option "key" "value"',
-        'option "key" "value" ; this is a comment',
+        'plugin "beancount.plugin"',
+        'plugin "beancount.plugin" "config"',
+        'plugin "beancount.plugin" "config" ; this is a comment',
     ],
 )
-def test_parse_option(plugin_parser, text: str):
+def test_parse_plugin(plugin_parser, text: str):
     plugin_parser.parse(text)
 
 
 @pytest.mark.parametrize(
     "text",
     [
-        'option "key"',
-        'option key "value"',
-        "option 'key' 'value'",
+        'plugin beancount.plugin "value"',
+        "plugin 'beancount.plugin' 'value'",
     ],
 )
-def test_parse_bad_option(plugin_parser, text: str):
+def test_parse_bad_plugin(plugin_parser, text: str):
     with pytest.raises(UnexpectedInput):
         plugin_parser.parse(text)
