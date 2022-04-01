@@ -2,7 +2,7 @@ import typing
 
 import pytest
 from lark import Lark
-from lark.exceptions import UnexpectedCharacters
+from lark.exceptions import UnexpectedInput
 
 
 @pytest.fixture
@@ -44,7 +44,7 @@ def test_parse_number(number_parser: Lark, text: str):
     ],
 )
 def test_parse_bad_number(number_parser: Lark, text: str):
-    with pytest.raises(UnexpectedCharacters):
+    with pytest.raises(UnexpectedInput):
         number_parser.parse(text)
 
 
@@ -69,5 +69,5 @@ def test_parse_signed_number(signed_number_parser: Lark, text: str):
 
 @pytest.mark.parametrize("text", ["0a", "1234..", "..4578", "12..34", "abc"])
 def test_parse_bad_signed_number(signed_number_parser: Lark, text: str):
-    with pytest.raises(UnexpectedCharacters):
+    with pytest.raises(UnexpectedInput):
         signed_number_parser.parse(text)
