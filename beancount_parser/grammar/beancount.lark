@@ -18,11 +18,12 @@ TXN: "txn"
 PAYEE: ESCAPED_STRING
 NARRATION: ESCAPED_STRING
 LETTER_DIGIT: LETTER | DIGIT
-ACCOUNT: (LETTER_DIGIT+) [":" LETTER_DIGIT+]+
+ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
 CURRENCY: LETTER_DIGIT+
-AMOUNT: SIGNED_DECIMAL CURRENCY
-POSTING: [FLAG] ACCOUNT AMOUNT
-transaction: date [TXN | FLAG] [[PAYEE] NARRATION] POSTING+
+
+amount: SIGNED_DECIMAL CURRENCY
+posting: [FLAG] ACCOUNT amount
+transaction: date [TXN | FLAG] [[PAYEE] NARRATION] (NEWLINE posting)+
 
 start: transaction
 
@@ -30,4 +31,5 @@ start: transaction
 %import common.ESCAPED_STRING
 %import common.LETTER
 %import common.DECIMAL
+%import common.NEWLINE
 %ignore " "
