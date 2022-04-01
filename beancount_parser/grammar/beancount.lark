@@ -1,41 +1,40 @@
-// Directives
-INCOMPLETE: "!"
-COMPLETED: "*"
-FLAG: INCOMPLETE | COMPLETED
+_EMPTY_LINE: _WS_INLINE* _NL+
+COMMENT_LINE: _WS_INLINE* COMMENT [_NL]
+?line: _EMPTY_LINE | COMMENT_LINE
 
-SIGNED_DECIMAL: ["-" | "+"] DECIMAL
+entries:  open
+        | close
+        | transaction
+        | event
+        | note
+        | document
+        | price
+        | balance
+        | pad
+        | commodity
+        | include
+        | option
+        | plugin
+        | line
 
-// Transaction
-TXN: "txn"
-PAYEE: ESCAPED_STRING
-NARRATION: ESCAPED_STRING
-LETTER_DIGIT: LETTER | DIGIT
-ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
-CURRENCY: LETTER_DIGIT+
+start: entries
 
-amount: DECIMAL CURRENCY
-signed_amount: SIGNED_DECIMAL CURRENCY
-price: amount
-
-per_unit_cost: "{" amount "}"
-total_cost: "{" amount "}"
-both_cost: "{" DECIMAL "#" amount "}"
-dated_cost: "{" amount "," date "}"
-cost: per_unit_cost | total_cost | both_cost | dated_cost
-
-posting: [FLAG] ACCOUNT signed_amount [cost] ["@" price] [COMMENT]
-
-transaction: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] (NEWLINE posting)+
-
-start: COMMENT
-
-%import common.DIGIT
-%import common.ESCAPED_STRING
-%import common.LETTER
-%import common.DECIMAL
-%import common.NEWLINE
+%import common.WS_INLINE -> _WS_INLINE
+%import common.NEWLINE -> _NL
 
 %import .comment.COMMENT
-%import .date.date
+%import .open.open
+%import .close.close
+%import .transaction.transaction
+%import .event.event
+%import .note.note
+%import .document.document
+%import .price.price
+%import .balance.balance
+%import .pad.pad
+%import .commodity.commodity
+%import .include.include
+%import .option.option
+%import .plugin.plugin
 
-%ignore " "
+%ignore _WS_INLINE
