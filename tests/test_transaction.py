@@ -7,11 +7,6 @@ from lark.exceptions import UnexpectedInput
 
 
 @pytest.fixture
-def posting_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="transaction", rule="posting", ignore_spaces=True)
-
-
-@pytest.fixture
 def transaction_header_parser(make_parser: typing.Callable) -> Lark:
     return make_parser(
         module="transaction", rule="transaction_header", ignore_spaces=True
@@ -33,53 +28,14 @@ def transaction_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "Assets 10 USD",
-        "Assets -10 USD",
-        "Assets:Bank -10.0 USD",
-        "Assets:Bank -10.0 TWD",
-        "Assets:Bank -10.0 TWD ; this is a comment",
-        "Assets:Bank -10.0 TWD; this is a comment",
-        "Assets:Bank -10.0 TWD @ 2.56 USD",
-        "Assets:Bank -10.0 TWD @  2.56  USD",
-        "Assets:Bank -10.0 TWD @@ 2.56 USD",
-        "Assets:Bank -10.0 TWD {100.56 USD}",
-        "Assets:Bank -10.0 TWD { 100.56 USD }",
-        "Assets:Bank -10.0 TWD {{100.56 USD}}",
-        "Assets:Bank -10.0 TWD {{ 100.56  USD}}",
-        "Assets:Bank -10.0 TWD {100.56 # 12.34 USD}",
-        "Assets:Bank -10.0 TWD { 100.56  #  12.34 USD }",
-        "Assets:Bank -10.0 TWD {100.56 # 3.45 CAD }",
-        "Assets:Bank -10.0 TWD {100.56 USD, 2021-06-07}",
-        "Assets:Bank -10.0 TWD {100.56 USD  , 2021-06-07}",
-        "Assets:Bank -10.0 TWD { 100.56 USD , 2021-06-07 }",
-        "! Assets:Bank -10.0 TWD",
-        "* Assets:Bank -10.0 TWD",
-    ],
-)
-def test_parse_posting(posting_parser: Lark, text: str):
-    posting_parser.parse(text)
-
-
-@pytest.mark.parametrize(
-    "text",
-    [
-        "Assets 10",
-        "A -10 USD",
-        "@ Assets:Bank -10.0 TWD",
-    ],
-)
-def test_parse_bad_posting(posting_parser: Lark, text: str):
-    with pytest.raises(UnexpectedInput):
-        posting_parser.parse(text)
-
-
-@pytest.mark.parametrize(
-    "text",
-    [
         '1970-01-01 * "Foobar"',
         '1970-01-01 ! "Foobar"',
         '1970-01-01 ! "\\"Foobar\\""',
         '1970-01-01 ! "Jane Doe" "Foobar"',
+        '1970-01-01 ! "Jane Doe" "Foobar" #hash-tag',
+        '1970-01-01 ! "Jane Doe" "Foobar" #hash-tag ^link',
+        '1970-01-01 ! "Jane Doe" "Foobar" #hash-tag ^link-1 #hash2',
+        '1970-01-01 * "Jane Doe" "Foobar" ; this is a comment',
         '1970-01-01 txn "Jane Doe" "Foobar"',
     ],
 )

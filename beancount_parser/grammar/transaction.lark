@@ -1,38 +1,27 @@
-// Directives
-INCOMPLETE: "!"
-COMPLETED: "*"
-FLAG: INCOMPLETE | COMPLETED
-
 // Transaction
 TXN: "txn"
-PAYEE: ESCAPED_STRING
+
 NARRATION: ESCAPED_STRING
+PAYEE_NARRATION: ESCAPED_STRING _WS+ ESCAPED_STRING
 
-long_posting: [FLAG] ACCOUNT amount [cost] [tx_price] [COMMENT]
-// the special case where only Account is present
-short_posting: [FLAG] ACCOUNT [COMMENT]
-posting: (long_posting | short_posting) [metadata_lines]
+annotation_item: TAG | LINK
+annotations: annotation_item+
 
-?annotation_item: [TAG | LINK]
-annotations: annotation_item [_WS_INLINE+ annotation_item]
-
-transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [annotations] [COMMENT]
-transaction_body: (_NL _WS_INLINE+ posting)+ [_NL]
+transaction_header: DATE [TXN | FLAG] [PAYEE_NARRATION | NARRATION] [annotations] [COMMENT]
+transaction_body: (_NL _WS+ posting)+ [_NL]
 transaction: transaction_header transaction_body
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
-%import common.WS_INLINE -> _WS_INLINE
+%import common.WS_INLINE -> _WS
 
 %import .comment.COMMENT
+%import .flag.FLAG
 %import .numbers.NUMBER
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
 %import .currency.CURRENCY
 %import .tag.TAG
 %import .link.LINK
-%import .date.date
-%import .amount.amount
-%import .tx_price.tx_price
-%import .cost.cost
+%import .date.DATE
 %import .metadata.metadata_lines
