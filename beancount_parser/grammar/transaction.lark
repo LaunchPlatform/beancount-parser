@@ -12,7 +12,10 @@ CURRENCY: LETTER_DIGIT+
 
 amount: NUMBER CURRENCY
 signed_amount: SIGNED_NUMBER CURRENCY
-price: amount
+
+per_unit_price: "@" amount
+total_price: "@@" amount
+price: per_unit_price | total_price
 
 per_unit_cost: "{" amount "}"
 total_cost: "{{" amount "}}"
@@ -20,14 +23,20 @@ both_cost: "{" NUMBER "#" amount "}"
 dated_cost: "{" amount "," date "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
 
-posting: [FLAG] ACCOUNT signed_amount [cost] ["@" price] [COMMENT]
+long_posting: [FLAG] ACCOUNT signed_amount [cost] [price] [COMMENT]
+// the special case where only Account is present
+short_posting: [FLAG] ACCOUNT [COMMENT]
+posting: short_posting | long_posting
+
 transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT]
-transaction: transaction_header (NEWLINE posting)+
+transaction_body: (NEWLINE WS_INLINE+ posting)+
+transaction: transaction_header transaction_body
 
 %import common.DIGIT
 %import common.ESCAPED_STRING
 %import common.LETTER
 %import common.NEWLINE
+%import common.WS_INLINE
 
 %import .comment.COMMENT
 %import .date.date

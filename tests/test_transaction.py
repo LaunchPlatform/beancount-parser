@@ -30,6 +30,18 @@ def transaction_header_parser() -> Lark:
 
 
 @pytest.fixture
+def transaction_body_parser() -> Lark:
+    return Lark(
+        """
+        start: transaction_body
+        %import .transaction.transaction_body
+        %ignore " "
+        """,
+        import_paths=[GRAMMAR_FOLDER],
+    )
+
+
+@pytest.fixture
 def transaction_parser() -> Lark:
     return Lark(
         """
@@ -52,6 +64,7 @@ def transaction_parser() -> Lark:
         "Assets:Bank -10.0 TWD; this is a comment",
         "Assets:Bank -10.0 TWD @ 2.56 USD",
         "Assets:Bank -10.0 TWD @  2.56  USD",
+        "Assets:Bank -10.0 TWD @@ 2.56 USD",
         "Assets:Bank -10.0 TWD {100.56 USD}",
         "Assets:Bank -10.0 TWD { 100.56 USD }",
         "Assets:Bank -10.0 TWD {{100.56 USD}}",
@@ -88,6 +101,7 @@ def test_parse_bad_posting(posting_parser: Lark, text: str):
     [
         '1970-01-01 * "Foobar"',
         '1970-01-01 ! "Foobar"',
+        '1970-01-01 ! "\\"Foobar\\""',
         '1970-01-01 ! "Jane Doe" "Foobar"',
         '1970-01-01 txn "Jane Doe" "Foobar"',
     ],
@@ -109,3 +123,29 @@ def test_parse_transaction_header(transaction_header_parser: Lark, text: str):
 def test_parse_bad_transaction_header(transaction_header_parser: Lark, text: str):
     with pytest.raises(UnexpectedInput):
         transaction_header_parser.parse(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        """
+          Assets  10 USD
+          Income -10 USD
+        """,
+    ],
+)
+def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
+    transaction_body_parser.parse(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        """1970-01-01 * "Foobar"
+            Assets  10 USD
+            Income -10 USD
+        """,
+    ],
+)
+def test_parse_transaction(transaction_parser: Lark, text: str):
+    transaction_parser.parse(text)
