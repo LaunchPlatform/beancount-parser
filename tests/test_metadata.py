@@ -70,15 +70,13 @@ def test_parse_metadata_value(metadata_value_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "0",
-        "0abc",
         "Abc",
         "_abc",
         "_ABC",
         "_Abc",
     ],
 )
-def test_parse_bad_metadata_key(metadata_value_parser: Lark, text: str):
+def test_parse_bad_metadata_value(metadata_value_parser: Lark, text: str):
     with pytest.raises(UnexpectedCharacters):
         metadata_value_parser.parse(text)
 

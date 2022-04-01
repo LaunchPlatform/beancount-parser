@@ -13,8 +13,6 @@ metadata_line: metadata_item [COMMENT]
 %import common.LETTER
 %import common.DIGIT
 %import common.ESCAPED_STRING
-%import common.NEWLINE -> _NL
-%import common.WS_INLINE -> _WS_INLINE
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
