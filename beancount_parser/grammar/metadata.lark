@@ -1,0 +1,5 @@
+METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
+
+%import common.LCASE_LETTER
+%import common.LETTER
+%import common.DIGIT
