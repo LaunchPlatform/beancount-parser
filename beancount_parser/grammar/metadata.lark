@@ -7,14 +7,19 @@ metadata_value:   ESCAPED_STRING
                 | amount
                 // TODO: add tags
 metadata_item: METADATA_KEY ":" metadata_value
+metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+ [_NL]
 
 %import common.LCASE_LETTER
 %import common.LETTER
 %import common.DIGIT
 %import common.ESCAPED_STRING
+%import common.NEWLINE -> _NL
+%import common.WS_INLINE -> _WS_INLINE
 
+%import .comment.COMMENT
 %import .account.ACCOUNT
 %import .numbers.SIGNED_NUMBER
 %import .currency.CURRENCY
 %import .date.date
 %import .amount.amount
+
