@@ -1,5 +1,3 @@
-from textwrap import dedent
-
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
@@ -25,6 +23,7 @@ def open_parser() -> Lark:
         "2022-03-31 open Assets",
         "2022-03-31 open Assets:Bank",
         "2022-03-31 open Assets:Bank USD",
+        "2022-03-31 open Assets:Bank USD ; this is a comment",
         "2022-03-31 open Assets:Bank USD,BTC",
         '2022-03-31 open Assets:Bank USD,BTC "STRICT"',
         '2022-03-31 open Assets:Bank "STRICT"',

@@ -182,4 +182,5 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
     ],
 )
 def test_parse_transaction(transaction_parser: Lark, text: str):
-    transaction_parser.parse(text)
+    res = transaction_parser.parse(text)
+    print(res.pretty())
