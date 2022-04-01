@@ -7,7 +7,7 @@ METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
                     | TAGS
                     | AMOUNT
 metadata_item: METADATA_KEY ":" metadata_value
-metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+
+metadata_line: metadata_item [COMMENT]
 
 %import common.LCASE_LETTER
 %import common.LETTER

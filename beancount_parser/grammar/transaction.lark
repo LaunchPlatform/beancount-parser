@@ -1,15 +1,14 @@
-// Transaction
 TXN: "txn"
-
 NARRATION: ESCAPED_STRING
 PAYEE_NARRATION: ESCAPED_STRING _WS+ ESCAPED_STRING
+NL_INDENT: _NL _WS+
 
 annotation_item: TAG | LINK
 annotations: annotation_item+
 
 transaction_header: DATE [TXN | FLAG] [PAYEE_NARRATION | NARRATION] [annotations] [COMMENT]
-transaction_body: (_NL _WS+ posting)+ [_NL]
-transaction: transaction_header transaction_body
+transaction_body: (NL_INDENT (posting | metadata_line))+
+transaction: transaction_header transaction_body [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
@@ -24,4 +23,6 @@ transaction: transaction_header transaction_body
 %import .tag.TAG
 %import .link.LINK
 %import .date.DATE
+%import .posting.posting
+%import .metadata.metadata_line
 %import .metadata.metadata_lines

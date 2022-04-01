@@ -61,9 +61,16 @@ def test_parse_bad_transaction_header(transaction_header_parser: Lark, text: str
 @pytest.mark.parametrize(
     "text",
     [
-        """
-          Assets  10 USD
-        """,
+        "\n Assets  10 USD",
+        "\n "
+        + "\n ".join(
+            [
+                "Assets 123.0 USD ; this is a comment",
+                'foo: "bar"',
+                "eggs: 2021-01-01 ; this is a metadata",
+                "Income -123.0 USD @ 456.0 CAD",
+            ]
+        ),
     ],
 )
 def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
