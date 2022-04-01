@@ -1,20 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def cost_parser() -> Lark:
-    return Lark(
-        """
-    start: cost
-    %import .cost.cost
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def cost_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="cost", rule="cost", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

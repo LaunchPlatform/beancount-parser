@@ -1,19 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def tag_parser() -> Lark:
-    return Lark(
-        """
-    start: TAG
-    %import .tag.TAG
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def tag_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="tag", rule="TAG")
 
 
 @pytest.mark.parametrize(

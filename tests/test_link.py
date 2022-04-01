@@ -1,19 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def link_parser() -> Lark:
-    return Lark(
-        """
-    start: LINK
-    %import .link.LINK
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def link_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="link", rule="LINK", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

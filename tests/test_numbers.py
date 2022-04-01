@@ -1,30 +1,18 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
+
+@pytest.fixture
+def number_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="numbers", rule="NUMBER")
 
 
 @pytest.fixture
-def number_parser() -> Lark:
-    return Lark(
-        """
-    start: NUMBER
-    %import .numbers.NUMBER
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
-
-
-@pytest.fixture
-def signed_number_parser() -> Lark:
-    return Lark(
-        """
-    start: SIGNED_NUMBER
-    %import .numbers.SIGNED_NUMBER
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def signed_number_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="numbers", rule="SIGNED_NUMBER")
 
 
 @pytest.mark.parametrize(

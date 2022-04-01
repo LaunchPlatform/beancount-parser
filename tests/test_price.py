@@ -1,22 +1,14 @@
+import typing
 from textwrap import dedent
 
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def price_parser() -> Lark:
-    return Lark(
-        """
-    start: price
-    %import .price.price
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def price_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="price", rule="price", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

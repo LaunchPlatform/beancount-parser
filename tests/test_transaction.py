@@ -1,3 +1,4 @@
+import typing
 from textwrap import dedent
 
 import pytest
@@ -8,51 +9,27 @@ from beancount_parser.parser import GRAMMAR_FOLDER
 
 
 @pytest.fixture
-def posting_parser() -> Lark:
-    return Lark(
-        """
-    start: posting
-    %import .transaction.posting
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
+def posting_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="transaction", rule="posting", ignore_spaces=True)
+
+
+@pytest.fixture
+def transaction_header_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(
+        module="transaction", rule="transaction_header", ignore_spaces=True
     )
 
 
 @pytest.fixture
-def transaction_header_parser() -> Lark:
-    return Lark(
-        """
-        start: transaction_header
-        %import .transaction.transaction_header
-        %ignore " "
-        """,
-        import_paths=[GRAMMAR_FOLDER],
+def transaction_body_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(
+        module="transaction", rule="transaction_body", ignore_spaces=True
     )
 
 
 @pytest.fixture
-def transaction_body_parser() -> Lark:
-    return Lark(
-        """
-        start: transaction_body
-        %import .transaction.transaction_body
-        %ignore " "
-        """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
-
-
-@pytest.fixture
-def transaction_parser() -> Lark:
-    return Lark(
-        """
-        start: transaction
-        %import .transaction.transaction
-        %ignore " "
-        """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def transaction_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="transaction", rule="transaction", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

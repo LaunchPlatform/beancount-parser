@@ -1,22 +1,14 @@
+import typing
 from textwrap import dedent
 
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def note_parser() -> Lark:
-    return Lark(
-        """
-    start: note
-    %import .note.note
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def note_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="note", rule="note", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

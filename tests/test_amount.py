@@ -1,20 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def amount_parser() -> Lark:
-    return Lark(
-        """
-    start: amount
-    %import .amount.amount
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def amount_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="amount", rule="amount", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

@@ -1,43 +1,23 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
+
+@pytest.fixture
+def metadata_key_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="metadata", rule="METADATA_KEY")
 
 
 @pytest.fixture
-def metadata_key_parser() -> Lark:
-    return Lark(
-        """
-    start: METADATA_KEY
-    %import .metadata.METADATA_KEY
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def metadata_value_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="metadata", rule="metadata_value", ignore_spaces=True)
 
 
 @pytest.fixture
-def metadata_value_parser() -> Lark:
-    return Lark(
-        """
-    start: metadata_value
-    %import .metadata.metadata_value
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
-
-
-@pytest.fixture
-def metadata_item_parser() -> Lark:
-    return Lark(
-        """
-    start: metadata_item
-    %import .metadata.metadata_item
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def metadata_item_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="metadata", rule="metadata_item", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

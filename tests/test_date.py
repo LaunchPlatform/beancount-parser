@@ -1,19 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def date_parser() -> Lark:
-    return Lark(
-        """
-    start: date
-    %import .date.date
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def date_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="date", rule="date")
 
 
 @pytest.mark.parametrize(

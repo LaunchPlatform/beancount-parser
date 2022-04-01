@@ -1,22 +1,14 @@
+import typing
 from textwrap import dedent
 
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def pad_parser() -> Lark:
-    return Lark(
-        """
-    start: pad
-    %import .pad.pad
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def pad_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="pad", rule="pad", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

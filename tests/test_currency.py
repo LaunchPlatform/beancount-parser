@@ -1,19 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def currency_parser() -> Lark:
-    return Lark(
-        """
-    start: CURRENCY
-    %import .currency.CURRENCY
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def currency_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="currency", rule="CURRENCY", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

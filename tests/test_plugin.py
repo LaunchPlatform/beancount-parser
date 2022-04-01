@@ -1,20 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def plugin_parser() -> Lark:
-    return Lark(
-        """
-    start: plugin
-    %import .plugin.plugin
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def plugin_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="plugin", rule="plugin", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

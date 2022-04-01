@@ -1,19 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedCharacters
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def account_parser() -> Lark:
-    return Lark(
-        """
-        start: ACCOUNT
-        %import .account.ACCOUNT
-        """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def account_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="account", rule="ACCOUNT")
 
 
 @pytest.mark.parametrize(

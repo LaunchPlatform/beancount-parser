@@ -1,20 +1,13 @@
+import typing
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def option_parser() -> Lark:
-    return Lark(
-        """
-    start: option
-    %import .option.option
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def option_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="option", rule="option", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -24,8 +17,8 @@ def option_parser() -> Lark:
         'option "key" "value" ; this is a comment',
     ],
 )
-def test_parse_option(plugin_parser, text: str):
-    plugin_parser.parse(text)
+def test_parse_option(option_parser, text: str):
+    option_parser.parse(text)
 
 
 @pytest.mark.parametrize(
@@ -36,6 +29,6 @@ def test_parse_option(plugin_parser, text: str):
         "option 'key' 'value'",
     ],
 )
-def test_parse_bad_option(plugin_parser, text: str):
+def test_parse_bad_option(option_parser, text: str):
     with pytest.raises(UnexpectedInput):
-        plugin_parser.parse(text)
+        option_parser.parse(text)

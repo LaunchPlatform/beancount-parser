@@ -1,18 +1,12 @@
+import typing
+
 import pytest
 from lark import Lark
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def comment_parser() -> Lark:
-    return Lark(
-        """
-    start: COMMENT
-    %import .comment.COMMENT
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def comment_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="comment", rule="COMMENT")
 
 
 @pytest.mark.parametrize(

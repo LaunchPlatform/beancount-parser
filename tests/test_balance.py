@@ -1,22 +1,14 @@
+import typing
 from textwrap import dedent
 
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
-def balance_parser() -> Lark:
-    return Lark(
-        """
-    start: balance
-    %import .balance.balance
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
+def balance_parser(make_parser: typing.Callable) -> Lark:
+    return make_parser(module="balance", rule="balance", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

@@ -19,7 +19,18 @@ def parser() -> Lark:
     2022-03-31 * "Foobar"
         Assets:MyBank 12.34 USD ; this is fine
     """
-        )
+        ),
+        dedent(
+            """\
+    1970-01-01 commodity USD
+    1970-01-01 open Assets:MyBank USD
+        
+    2022-03-31 * "Foobar"
+        Assets:MyBank 12.34 USD ; this is fine
+    
+    
+    """
+        ),
     ],
 )
 def test_parse(parser: Lark, text: str):
