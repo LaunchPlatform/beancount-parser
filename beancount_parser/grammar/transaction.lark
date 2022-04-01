@@ -29,14 +29,14 @@ short_posting: [FLAG] ACCOUNT [COMMENT]
 posting: long_posting | short_posting
 
 transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT]
-transaction_body: (NEWLINE WS_INLINE+ posting)+ [NEWLINE]
+transaction_body: (_NL _WS_INLINE+ posting)+ [_NL]
 transaction: transaction_header transaction_body
 
 %import common.DIGIT
 %import common.ESCAPED_STRING
 %import common.LETTER
-%import common.NEWLINE
-%import common.WS_INLINE
+%import common.NEWLINE -> _NL
+%import common.WS_INLINE -> _WS_INLINE
 
 %import .comment.COMMENT
 %import .date.date
