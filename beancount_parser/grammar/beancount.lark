@@ -1,8 +1,33 @@
-four_digit: DIGIT~4..4
-two_digit: DIGIT~2..2
-year: four_digit
-month: two_digit
-day: two_digit
-date: year "-" month "-" day
+// Date
+FOUR_DIGIT: DIGIT~4
+TWO_DIGIT: DIGIT~2
+YEAR: FOUR_DIGIT
+MONTH: TWO_DIGIT
+DAY: TWO_DIGIT
+date: YEAR "-" MONTH "-" DAY
+
+// Directives
+INCOMPLETE: "!"
+COMPLETED: "*"
+FLAG: INCOMPLETE | COMPLETED
+
+SIGNED_DECIMAL: ["-" | "+"] DECIMAL
+
+// Transaction
+TXN: "txn"
+PAYEE: ESCAPED_STRING
+NARRATION: ESCAPED_STRING
+LETTER_DIGIT: LETTER | DIGIT
+ACCOUNT: (LETTER_DIGIT+) [":" LETTER_DIGIT+]+
+CURRENCY: LETTER_DIGIT+
+AMOUNT: SIGNED_DECIMAL CURRENCY
+POSTING: [FLAG] ACCOUNT AMOUNT
+transaction: date [TXN | FLAG] [[PAYEE] NARRATION] POSTING+
+
+start: transaction
 
 %import common.DIGIT
+%import common.ESCAPED_STRING
+%import common.LETTER
+%import common.DECIMAL
+%ignore " "
