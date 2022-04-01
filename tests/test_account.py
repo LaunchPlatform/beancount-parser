@@ -20,6 +20,10 @@ def account_parser() -> Lark:
     "text",
     [
         "Assets",
+        "Assets:A",
+        "Assets:2",
+        "Assets:Ab",
+        "Assets:AA",
         "Assets:Banks:AMEX",
         "Assets:Banks:WellsFargo",
         "Assets:Banks:Wells-Fargo",
@@ -46,6 +50,7 @@ def test_parse_account(account_parser: Lark, text: str):
         "assets:bank",
         "Assets:bank",
         ":Assets",
+        "Assets:",
         "Assets::Banks:AMEX",
     ],
 )

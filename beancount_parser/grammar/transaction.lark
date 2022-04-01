@@ -21,7 +21,8 @@ dated_cost: "{" amount "," date "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
 
 posting: [FLAG] ACCOUNT signed_amount [cost] ["@" price] [COMMENT]
-transaction: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] (NEWLINE posting)+
+transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT]
+transaction: transaction_header (NEWLINE posting)+
 
 %import common.DIGIT
 %import common.ESCAPED_STRING
