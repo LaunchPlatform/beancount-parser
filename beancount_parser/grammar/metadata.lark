@@ -5,6 +5,8 @@ metadata_value:   ESCAPED_STRING
                 | SIGNED_NUMBER
                 | date
                 | amount
+                // TODO: add tags
+metadata_item: METADATA_KEY ":" metadata_value
 
 %import common.LCASE_LETTER
 %import common.LETTER
