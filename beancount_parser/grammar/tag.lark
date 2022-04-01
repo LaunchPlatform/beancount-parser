@@ -1,0 +1,4 @@
+TAG: "#" (LETTER | DIGIT | "-" | "_")+
+
+%import common.LETTER
+%import common.DIGIT
