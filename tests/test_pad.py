@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
@@ -22,6 +24,13 @@ def pad_parser() -> Lark:
     [
         "2022-03-31 pad Assets Expenses",
         "2022-03-31 pad Assets:Bank Expenses ; this is a comment",
+        dedent(
+            """\
+        2022-03-31 pad Assets:Bank Expenses
+            foo: "bar"
+            egg: #spam
+        """
+        ),
     ],
 )
 def test_parse_pad(pad_parser: Lark, text: str):

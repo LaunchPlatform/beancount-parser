@@ -1,4 +1,4 @@
-price: date "price" CURRENCY amount [COMMENT] [_NL]
+price: date "price" CURRENCY amount [COMMENT] [metadata_lines] [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
@@ -7,3 +7,4 @@ price: date "price" CURRENCY amount [COMMENT] [_NL]
 %import .currency.CURRENCY
 %import .amount.amount
 %import .date.date
+%import .metadata.metadata_lines

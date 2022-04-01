@@ -1,4 +1,4 @@
-balance: date "balance" ACCOUNT amount [COMMENT] [_NL]
+balance: date "balance" ACCOUNT amount [COMMENT] [metadata_lines] [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
@@ -7,3 +7,4 @@ balance: date "balance" ACCOUNT amount [COMMENT] [_NL]
 %import .account.ACCOUNT
 %import .amount.amount
 %import .date.date
+%import .metadata.metadata_lines

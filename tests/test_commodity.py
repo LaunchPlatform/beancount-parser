@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
@@ -23,6 +25,13 @@ def commodity_parser() -> Lark:
         "2022-03-31 commodity USD",
         "2022-03-31 commodity BTC ; this is a comment",
         "2022-03-31 commodity BTC ; this is a comment",
+        dedent(
+            """\
+        2022-03-31 commodity BTC ; this is a comment
+            foo: "bar"
+            egg: #spam
+        """
+        ),
     ],
 )
 def test_parse_commodity(commodity_parser: Lark, text: str):

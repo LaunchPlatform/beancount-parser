@@ -1,7 +1,8 @@
-event: date "event" ESCAPED_STRING ESCAPED_STRING [COMMENT] [_NL]
+event: date "event" ESCAPED_STRING ESCAPED_STRING [COMMENT] [metadata_lines] [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
 
 %import .comment.COMMENT
 %import .date.date
+%import .metadata.metadata_lines

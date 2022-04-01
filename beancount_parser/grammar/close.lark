@@ -1,5 +1,8 @@
-close: date "close" ACCOUNT [COMMENT] [_NL]
+close: date "close" ACCOUNT [COMMENT] [metadata_lines] [_NL]
+
+%import common.NEWLINE -> _NL
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
 %import .date.date
+%import .metadata.metadata_lines

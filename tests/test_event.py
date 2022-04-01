@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
@@ -22,6 +24,13 @@ def event_parser() -> Lark:
     [
         '2022-03-31 event "employer" "Launch Platform LLC"',
         '2022-03-31 event "location" "San Francisco"; this is a comment',
+        dedent(
+            """\
+        2022-03-31 event "location" "San Francisco"
+            foo: "bar"
+            egg: #spam
+        """
+        ),
     ],
 )
 def test_parse_event(event_parser: Lark, text: str):

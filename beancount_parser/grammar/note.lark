@@ -1,4 +1,4 @@
-note: date "note" ACCOUNT ESCAPED_STRING [COMMENT] [_NL]
+note: date "note" ACCOUNT ESCAPED_STRING [COMMENT] [metadata_lines] [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL
@@ -6,3 +6,4 @@ note: date "note" ACCOUNT ESCAPED_STRING [COMMENT] [_NL]
 %import .comment.COMMENT
 %import .account.ACCOUNT
 %import .date.date
+%import .metadata.metadata_lines
