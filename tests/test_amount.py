@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def amount_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="amount", rule="amount", ignore_spaces=True)
+    return make_parser(module="amount", rule="AMOUNT", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

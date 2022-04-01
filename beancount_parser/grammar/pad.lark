@@ -1,4 +1,4 @@
-PAD_PREFIX.20: DATE "pad"
+PAD_PREFIX.20: DATE _WS+ "pad"
 pad: PAD_PREFIX ACCOUNT ACCOUNT [COMMENT]
 
 %import common.WS_INLINE -> _WS
