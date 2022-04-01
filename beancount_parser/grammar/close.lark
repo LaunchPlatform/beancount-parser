@@ -1,4 +1,4 @@
-CLOSE_PREFIX: DATE _WS+ "close"
+CLOSE_PREFIX.20: DATE _WS+ "close"
 close: CLOSE_PREFIX ACCOUNT [COMMENT]
 
 %import common.WS_INLINE -> _WS

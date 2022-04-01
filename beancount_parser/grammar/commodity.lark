@@ -1,4 +1,4 @@
-COMMODITY_PREFIX: DATE _WS+ "commodity"
+COMMODITY_PREFIX.20: DATE _WS+ "commodity"
 commodity: COMMODITY_PREFIX CURRENCY [COMMENT]
 
 %import common.WS_INLINE -> _WS

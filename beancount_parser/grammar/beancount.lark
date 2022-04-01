@@ -14,7 +14,7 @@ _directives_with_metadata: open
 _directives_without_metadata: include
             | option
             | plugin
-_directive: (_directives_with_metadata [(_NL_INDENT metadata_line)+] | _directives_without_metadata) [_NL]
+_directive: (_directives_with_metadata [(_NL_INDENT metadata_line)+] | _directives_without_metadata | transaction) [_NL]
 
 start: (_directive | _EMPTY_LINE | COMMENT_LINE)*
 

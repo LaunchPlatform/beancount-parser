@@ -28,6 +28,7 @@ def transaction_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
+        "1970-01-01",
         '1970-01-01 * "Foobar"',
         '1970-01-01 ! "Foobar"',
         '1970-01-01 ! "\\"Foobar\\""',
