@@ -1,0 +1,5 @@
+per_unit_price: "@" amount
+total_price: "@@" amount
+price: per_unit_price | total_price
+
+%import .amount.amount

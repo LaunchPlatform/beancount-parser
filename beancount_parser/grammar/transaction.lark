@@ -8,16 +8,6 @@ TXN: "txn"
 PAYEE: ESCAPED_STRING
 NARRATION: ESCAPED_STRING
 
-per_unit_price: "@" amount
-total_price: "@@" amount
-price: per_unit_price | total_price
-
-per_unit_cost: "{" amount "}"
-total_cost: "{{" amount "}}"
-both_cost: "{" NUMBER "#" amount "}"
-dated_cost: "{" amount "," date "}"
-cost: per_unit_cost | total_cost | both_cost | dated_cost
-
 long_posting: [FLAG] ACCOUNT amount [cost] [price] [COMMENT]
 // the special case where only Account is present
 short_posting: [FLAG] ACCOUNT [COMMENT]
@@ -38,4 +28,6 @@ transaction: transaction_header transaction_body
 %import .currency.CURRENCY
 %import .date.date
 %import .amount.amount
+%import .price.price
+%import .cost.cost
 %import .metadata.metadata_lines
