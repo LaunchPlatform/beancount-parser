@@ -7,11 +7,6 @@ FLAG: INCOMPLETE | COMPLETED
 TXN: "txn"
 PAYEE: ESCAPED_STRING
 NARRATION: ESCAPED_STRING
-LETTER_DIGIT: LETTER | DIGIT
-CURRENCY: LETTER_DIGIT+
-
-amount: NUMBER CURRENCY
-signed_amount: SIGNED_NUMBER CURRENCY
 
 per_unit_price: "@" amount
 total_price: "@@" amount
@@ -32,14 +27,14 @@ transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT]
 transaction_body: (_NL _WS_INLINE+ posting)+ [_NL]
 transaction: transaction_header transaction_body
 
-%import common.DIGIT
 %import common.ESCAPED_STRING
-%import common.LETTER
 %import common.NEWLINE -> _NL
 %import common.WS_INLINE -> _WS_INLINE
 
 %import .comment.COMMENT
-%import .date.date
 %import .numbers.NUMBER
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
+%import .currency.CURRENCY
+%import .date.date
+%import .amount.amount

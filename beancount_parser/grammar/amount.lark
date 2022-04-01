@@ -1,0 +1,4 @@
+amount: SIGNED_NUMBER CURRENCY
+
+%import .numbers.SIGNED_NUMBER
+%import .currency.CURRENCY

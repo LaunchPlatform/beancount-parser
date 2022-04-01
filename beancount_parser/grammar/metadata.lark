@@ -1,5 +1,18 @@
 METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
+metadata_value:   ESCAPED_STRING
+                | ACCOUNT
+                | CURRENCY
+                | SIGNED_NUMBER
+                | date
+                | amount
 
 %import common.LCASE_LETTER
 %import common.LETTER
 %import common.DIGIT
+%import common.ESCAPED_STRING
+
+%import .account.ACCOUNT
+%import .numbers.SIGNED_NUMBER
+%import .currency.CURRENCY
+%import .date.date
+%import .amount.amount

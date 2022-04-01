@@ -16,6 +16,18 @@ def metadata_key_parser() -> Lark:
     )
 
 
+@pytest.fixture
+def metadata_value_parser() -> Lark:
+    return Lark(
+        """
+    start: metadata_value
+    %import .metadata.metadata_value
+    %ignore " "
+    """,
+        import_paths=[GRAMMAR_FOLDER],
+    )
+
+
 @pytest.mark.parametrize(
     "text",
     [
@@ -45,3 +57,33 @@ def test_parse_metadata_key(metadata_key_parser: Lark, text: str):
 def test_parse_bad_metadata_key(metadata_key_parser: Lark, text: str):
     with pytest.raises(UnexpectedCharacters):
         metadata_key_parser.parse(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        '"String value"',
+        "2020-03-31",
+        "12.34",
+        "12.34 USD",
+        "USD",
+    ],
+)
+def test_parse_metadata_key(metadata_value_parser: Lark, text: str):
+    metadata_value_parser.parse(text)
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "0",
+        "0abc",
+        "Abc",
+        "_abc",
+        "_ABC",
+        "_Abc",
+    ],
+)
+def test_parse_bad_metadata_key(metadata_value_parser: Lark, text: str):
+    with pytest.raises(UnexpectedCharacters):
+        metadata_value_parser.parse(text)
