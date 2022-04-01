@@ -26,10 +26,10 @@ cost: per_unit_cost | total_cost | both_cost | dated_cost
 long_posting: [FLAG] ACCOUNT signed_amount [cost] [price] [COMMENT]
 // the special case where only Account is present
 short_posting: [FLAG] ACCOUNT [COMMENT]
-posting: short_posting | long_posting
+posting: long_posting | short_posting
 
 transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT]
-transaction_body: (NEWLINE WS_INLINE+ posting)+
+transaction_body: (NEWLINE WS_INLINE+ posting)+ [NEWLINE]
 transaction: transaction_header transaction_body
 
 %import common.DIGIT

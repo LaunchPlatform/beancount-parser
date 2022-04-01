@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
@@ -130,7 +132,6 @@ def test_parse_bad_transaction_header(transaction_header_parser: Lark, text: str
     [
         """
           Assets  10 USD
-          Income -10 USD
         """,
     ],
 )
@@ -141,10 +142,13 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        """1970-01-01 * "Foobar"
+        dedent(
+            """\
+        1970-01-01 * "Foobar"
             Assets  10 USD
             Income -10 USD
-        """,
+        """
+        ),
     ],
 )
 def test_parse_transaction(transaction_parser: Lark, text: str):
