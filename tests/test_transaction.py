@@ -149,6 +149,20 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
             Income -10 USD
         """
         ),
+        dedent(
+            """\
+        1970-01-01 * "Foobar"
+            Assets  10 USD
+            Income
+        """
+        ),
+        dedent(
+            """\
+        1970-01-01 * "Foobar" ; header
+            Assets  10 USD ; posting body
+            Income -10 USD ; posting body
+        """
+        ),
     ],
 )
 def test_parse_transaction(transaction_parser: Lark, text: str):
