@@ -1,5 +1,5 @@
 currencies: CURRENCY ["," CURRENCY]*
-open: date "open" ACCOUNT [currencies] [ESCAPED_STRING] [COMMENT]
+open: date "open" ACCOUNT [currencies] [ESCAPED_STRING] [COMMENT] [_NL]
 
 %import common.ESCAPED_STRING
 %import common.NEWLINE -> _NL

@@ -1,4 +1,4 @@
-close: date "close" ACCOUNT [COMMENT]
+close: date "close" ACCOUNT [COMMENT] [_NL]
 
 %import .comment.COMMENT
 %import .account.ACCOUNT

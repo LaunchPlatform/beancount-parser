@@ -1,0 +1,9 @@
+balance: date "balance" ACCOUNT amount [COMMENT] [_NL]
+
+%import common.ESCAPED_STRING
+%import common.NEWLINE -> _NL
+
+%import .comment.COMMENT
+%import .account.ACCOUNT
+%import .amount.amount
+%import .date.date
