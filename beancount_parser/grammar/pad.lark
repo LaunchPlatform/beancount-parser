@@ -1,0 +1,7 @@
+pad: date "pad" ACCOUNT ACCOUNT [COMMENT] [_NL]
+
+%import common.NEWLINE -> _NL
+
+%import .comment.COMMENT
+%import .account.ACCOUNT
+%import .date.date
