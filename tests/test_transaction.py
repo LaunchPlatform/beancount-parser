@@ -4,6 +4,18 @@ from lark import Lark
 from beancount_parser.parser import GRAMMAR_FOLDER
 
 
+@pytest.fixture
+def posting_parser() -> Lark:
+    return Lark(
+        """
+    start: posting
+    %import .transaction.posting
+    %ignore " "
+    """,
+        import_paths=[GRAMMAR_FOLDER],
+    )
+
+
 @pytest.mark.parametrize(
     "text",
     [
@@ -12,13 +24,5 @@ from beancount_parser.parser import GRAMMAR_FOLDER
         "Assets:Bank -10 USD",
     ],
 )
-def test_parse_posting(text: str):
-    parser = Lark(
-        """
-    start: posting
-    %import .transaction.posting
-    %ignore " "
-    """,
-        import_paths=[GRAMMAR_FOLDER],
-    )
-    parser.parse(text)
+def test_parse_posting(posting_parser: Lark, text: str):
+    posting_parser.parse(text)

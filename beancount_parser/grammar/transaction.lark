@@ -31,5 +31,5 @@ transaction: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] (NEWLINE posting)+
 
 %import .comment.COMMENT
 %import .date.date
-%import .number.NUMBER
-%import .number.SIGNED_NUMBER
+%import .numbers.NUMBER
+%import .numbers.SIGNED_NUMBER
