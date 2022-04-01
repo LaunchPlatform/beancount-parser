@@ -1,6 +1,8 @@
-price: DATE "price" CURRENCY AMOUNT [COMMENT]
+PRICE_PREFIX: DATE _WS+ "price"
+price: PRICE_PREFIX CURRENCY AMOUNT [COMMENT]
 
 %import common.ESCAPED_STRING
+%import common.WS_INLINE -> _WS
 
 %import .comment.COMMENT
 %import .currency.CURRENCY

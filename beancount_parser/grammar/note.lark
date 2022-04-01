@@ -1,6 +1,8 @@
-note: DATE "note" ACCOUNT ESCAPED_STRING [COMMENT]
+NOTE_PREFIX: DATE _WS+ "note"
+note: NOTE_PREFIX ACCOUNT ESCAPED_STRING [COMMENT]
 
 %import common.ESCAPED_STRING
+%import common.WS_INLINE -> _WS
 
 %import .comment.COMMENT
 %import .account.ACCOUNT

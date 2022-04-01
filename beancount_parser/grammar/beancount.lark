@@ -1,13 +1,24 @@
-_EMPTY_LINE: _WS_INLINE* _NL+
-COMMENT_LINE: _WS_INLINE* COMMENT [_NL]
-?line: _EMPTY_LINE | COMMENT_LINE
+_EMPTY_LINE: _WS* _NL+
+COMMENT_LINE: _WS* COMMENT [_NL]
+_NL_INDENT: _NL _WS+
 
-entries:  transaction
-//        | line
+_directives_with_metadata: open
+            | close
+            | event
+            | note
+            | document
+            | price
+            | balance
+            | pad
+            | commodity
+_directives_without_metadata: include
+            | option
+            | plugin
+_directive: (_directives_with_metadata [(_NL_INDENT metadata_line)+] | _directives_without_metadata) [_NL]
 
-start: entries
+start: (_directive | _EMPTY_LINE | COMMENT_LINE)*
 
-%import common.WS_INLINE -> _WS_INLINE
+%import common.WS_INLINE -> _WS
 %import common.NEWLINE -> _NL
 
 %import .comment.COMMENT
@@ -24,5 +35,6 @@ start: entries
 %import .include.include
 %import .option.option
 %import .plugin.plugin
+%import .metadata.metadata_line
 
-%ignore _WS_INLINE
+%ignore _WS

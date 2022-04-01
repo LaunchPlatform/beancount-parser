@@ -16,6 +16,17 @@ def parser() -> Lark:
     [
         dedent(
             """\
+    1970-01-01 commodity USD
+    1970-01-01 open Assets:MyBank USD
+    
+    option "foo" "bar"
+    include "2022.bean"
+    plugin "beancount.module"
+    
+    """
+        ),
+        dedent(
+            """\
     2022-03-31 * "Foobar"
         Assets:MyBank 12.34 USD ; this is fine
     """
@@ -24,11 +35,11 @@ def parser() -> Lark:
             """\
     1970-01-01 commodity USD
     1970-01-01 open Assets:MyBank USD
-        
+
     2022-03-31 * "Foobar"
         Assets:MyBank 12.34 USD ; this is fine
-    
-    
+
+
     """
         ),
     ],

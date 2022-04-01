@@ -1,4 +1,7 @@
-balance: DATE "balance" ACCOUNT AMOUNT [COMMENT]
+BALANCE_PREFIX: DATE _WS+ "balance"
+balance: BALANCE_PREFIX ACCOUNT AMOUNT [COMMENT]
+
+%import common.WS_INLINE -> _WS
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
