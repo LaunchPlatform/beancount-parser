@@ -1,6 +1,5 @@
-option: "option" ESCAPED_STRING ESCAPED_STRING [COMMENT] [_NL]
+option: "option" ESCAPED_STRING ESCAPED_STRING [COMMENT]
 
 %import common.ESCAPED_STRING
-%import common.NEWLINE -> _NL
 
 %import .comment.COMMENT

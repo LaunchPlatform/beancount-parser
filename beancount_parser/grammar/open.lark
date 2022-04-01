@@ -1,11 +1,9 @@
-currencies: CURRENCY ["," CURRENCY]*
-open: date "open" ACCOUNT [currencies] [ESCAPED_STRING] [COMMENT] [metadata_lines] [_NL]
+CURRENCIES: CURRENCY ["," CURRENCY]*
+open: DATE "open" ACCOUNT [CURRENCIES] [ESCAPED_STRING] [COMMENT]
 
 %import common.ESCAPED_STRING
-%import common.NEWLINE -> _NL
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
 %import .currency.CURRENCY
-%import .date.date
-%import .metadata.metadata_lines
+%import .date.DATE

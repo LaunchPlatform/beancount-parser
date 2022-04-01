@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
@@ -16,13 +15,6 @@ def pad_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31 pad Assets Expenses",
         "2022-03-31 pad Assets:Bank Expenses ; this is a comment",
-        dedent(
-            """\
-        2022-03-31 pad Assets:Bank Expenses
-            foo: "bar"
-            egg: #spam
-        """
-        ),
     ],
 )
 def test_parse_pad(pad_parser: Lark, text: str):

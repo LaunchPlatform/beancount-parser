@@ -1,8 +1,5 @@
-pad: date "pad" ACCOUNT ACCOUNT [COMMENT] [metadata_lines] [_NL]
-
-%import common.NEWLINE -> _NL
+pad: DATE "pad" ACCOUNT ACCOUNT [COMMENT]
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
-%import .date.date
-%import .metadata.metadata_lines
+%import .date.DATE

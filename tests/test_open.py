@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
@@ -22,13 +21,6 @@ def open_parser(make_parser: typing.Callable) -> Lark:
         '2022-03-31 open Assets:Bank USD,BTC "STRICT"',
         '2022-03-31 open Assets:Bank "STRICT"',
         '2022-03-31 open Assets:Bank USD,BTC "NONE"',
-        dedent(
-            """\
-        2022-03-31 open Assets:Bank
-            foo: "bar"
-            egg: #spam
-        """
-        ),
     ],
 )
 def test_parse_open(open_parser: Lark, text: str):

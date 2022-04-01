@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
@@ -16,13 +15,6 @@ def price_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31 price BTC 12.34 USD",
         "2022-03-31 price BTC 12.34 USD ; this is a comment",
-        dedent(
-            """\
-        2022-03-31 price BTC 12.34 USD
-            foo: "bar"
-            egg: #spam
-        """
-        ),
     ],
 )
 def test_parse_price(price_parser: Lark, text: str):
