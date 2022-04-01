@@ -1,4 +1,6 @@
 TAG: "#" (LETTER | DIGIT | "-" | "_")+
+TAGS: TAG [_WS_INLINE+ TAG]
 
 %import common.LETTER
 %import common.DIGIT
+%import common.WS_INLINE -> _WS_INLINE
