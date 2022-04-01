@@ -8,7 +8,7 @@ TXN: "txn"
 PAYEE: ESCAPED_STRING
 NARRATION: ESCAPED_STRING
 
-long_posting: [FLAG] ACCOUNT amount [cost] [price] [COMMENT]
+long_posting: [FLAG] ACCOUNT amount [cost] [tx_price] [COMMENT]
 // the special case where only Account is present
 short_posting: [FLAG] ACCOUNT [COMMENT]
 posting: (long_posting | short_posting) [metadata_lines]
@@ -33,6 +33,6 @@ transaction: transaction_header transaction_body
 %import .link.LINK
 %import .date.date
 %import .amount.amount
-%import .price.price
+%import .tx_price.tx_price
 %import .cost.cost
 %import .metadata.metadata_lines

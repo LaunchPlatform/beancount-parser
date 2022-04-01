@@ -1,5 +1,9 @@
-per_unit_price: "@" amount
-total_price: "@@" amount
-price: per_unit_price | total_price
+price: date "price" CURRENCY amount [COMMENT] [_NL]
 
+%import common.ESCAPED_STRING
+%import common.NEWLINE -> _NL
+
+%import .comment.COMMENT
+%import .currency.CURRENCY
 %import .amount.amount
+%import .date.date
