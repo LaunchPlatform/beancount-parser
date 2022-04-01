@@ -21,8 +21,18 @@ LETTER_DIGIT: LETTER | DIGIT
 ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
 CURRENCY: LETTER_DIGIT+
 
-amount: SIGNED_DECIMAL CURRENCY
-posting: [FLAG] ACCOUNT amount
+amount: DECIMAL CURRENCY
+signed_amount: SIGNED_DECIMAL CURRENCY
+price: amount
+
+per_unit_cost: "{" amount "}"
+total_cost: "{" amount "}"
+both_cost: "{" DECIMAL "#" amount "}"
+dated_cost: "{" amount "," date "}"
+cost: per_unit_cost | total_cost | both_cost | dated_cost
+
+posting: [FLAG] ACCOUNT signed_amount [cost] ["@" price]
+
 transaction: date [TXN | FLAG] [[PAYEE] NARRATION] (NEWLINE posting)+
 
 start: transaction
