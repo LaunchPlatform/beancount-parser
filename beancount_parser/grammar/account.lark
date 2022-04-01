@@ -1,0 +1,5 @@
+LETTER_DIGIT: LETTER | DIGIT
+ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
+
+%import common.DIGIT
+%import common.LETTER

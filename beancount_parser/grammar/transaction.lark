@@ -3,8 +3,6 @@ INCOMPLETE: "!"
 COMPLETED: "*"
 FLAG: INCOMPLETE | COMPLETED
 
-SIGNED_DECIMAL: ["-" | "+"] DECIMAL
-
 // Transaction
 TXN: "txn"
 PAYEE: ESCAPED_STRING
@@ -13,29 +11,25 @@ LETTER_DIGIT: LETTER | DIGIT
 ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
 CURRENCY: LETTER_DIGIT+
 
-amount: DECIMAL CURRENCY
-signed_amount: SIGNED_DECIMAL CURRENCY
+amount: NUMBER CURRENCY
+signed_amount: SIGNED_NUMBER CURRENCY
 price: amount
 
 per_unit_cost: "{" amount "}"
 total_cost: "{" amount "}"
-both_cost: "{" DECIMAL "#" amount "}"
+both_cost: "{" NUMBER "#" amount "}"
 dated_cost: "{" amount "," date "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
 
 posting: [FLAG] ACCOUNT signed_amount [cost] ["@" price] [COMMENT]
-
 transaction: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] (NEWLINE posting)+
-
-start: COMMENT
 
 %import common.DIGIT
 %import common.ESCAPED_STRING
 %import common.LETTER
-%import common.DECIMAL
 %import common.NEWLINE
 
 %import .comment.COMMENT
 %import .date.date
-
-%ignore " "
+%import .number.NUMBER
+%import .number.SIGNED_NUMBER

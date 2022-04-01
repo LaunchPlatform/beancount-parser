@@ -1,0 +1,5 @@
+NUMBER: INT | DECIMAL
+SIGNED_NUMBER: [ "+" | "-" ] NUMBER
+
+%import common.INT
+%import common.DECIMAL
