@@ -8,7 +8,6 @@ TXN: "txn"
 PAYEE: ESCAPED_STRING
 NARRATION: ESCAPED_STRING
 LETTER_DIGIT: LETTER | DIGIT
-ACCOUNT: (LETTER_DIGIT+) [":" (LETTER_DIGIT+)]*
 CURRENCY: LETTER_DIGIT+
 
 amount: NUMBER CURRENCY
@@ -16,7 +15,7 @@ signed_amount: SIGNED_NUMBER CURRENCY
 price: amount
 
 per_unit_cost: "{" amount "}"
-total_cost: "{" amount "}"
+total_cost: "{{" amount "}}"
 both_cost: "{" NUMBER "#" amount "}"
 dated_cost: "{" amount "," date "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
@@ -33,3 +32,4 @@ transaction: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] (NEWLINE posting)+
 %import .date.date
 %import .numbers.NUMBER
 %import .numbers.SIGNED_NUMBER
+%import .account.ACCOUNT
