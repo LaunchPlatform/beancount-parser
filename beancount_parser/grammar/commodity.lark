@@ -1,0 +1,9 @@
+commodity: date "commodity" CURRENCY [COMMENT] [metadata_lines] [_NL]
+
+%import common.ESCAPED_STRING
+%import common.NEWLINE -> _NL
+
+%import .comment.COMMENT
+%import .currency.CURRENCY
+%import .date.date
+%import .metadata.metadata_lines
