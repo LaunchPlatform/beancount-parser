@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
@@ -17,13 +16,6 @@ def close_parser(make_parser: typing.Callable) -> Lark:
         "2022-03-31 close Assets",
         "2022-03-31 close Assets:Bank",
         "2022-03-31 close Assets:Bank ; this is a comment",
-        dedent(
-            """\
-        2022-03-31 close Assets:Bank
-            foo: "bar"
-            egg: #spam
-        """
-        ),
     ],
 )
 def test_parse_close(close_parser: Lark, text: str):

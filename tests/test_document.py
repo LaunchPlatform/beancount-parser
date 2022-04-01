@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
@@ -17,13 +16,6 @@ def document_parser(make_parser: typing.Callable) -> Lark:
         '2022-03-31 document Assets "/path/to/the/file.pdf"',
         '2022-03-31 document Assets "/path/to/the/file.pdf" ; this is a comment',
         '2022-03-31 document Assets "/path/to/the/file.pdf"',
-        dedent(
-            """\
-        2022-03-31 document Assets "/path/to/the/file.pdf"
-            foo: "bar"
-            egg: #spam
-        """
-        ),
     ],
 )
 def test_parse_document(document_parser: Lark, text: str):

@@ -1,4 +1,6 @@
-amount: SIGNED_NUMBER CURRENCY
+AMOUNT: SIGNED_NUMBER _WS+ CURRENCY
+
+%import common.WS_INLINE -> _WS
 
 %import .numbers.SIGNED_NUMBER
 %import .currency.CURRENCY

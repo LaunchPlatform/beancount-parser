@@ -1,9 +1,11 @@
-per_unit_cost: "{" amount "}"
-total_cost: "{{" amount "}}"
-both_cost: "{" SIGNED_NUMBER "#" amount "}"
-dated_cost: "{" amount "," date "}"
-cost: per_unit_cost | total_cost | both_cost | dated_cost
+PER_UNIT_COST: "{" _WS* AMOUNT _WS* "}"
+TOTAL_COST: "{{" _WS* AMOUNT  _WS* "}}"
+BOTH_COST: "{" _WS* SIGNED_NUMBER  _WS* "#"  _WS* AMOUNT  _WS* "}"
+DATED_COST: "{" _WS* AMOUNT _WS* "," _WS* DATE _WS* "}"
+?cost: PER_UNIT_COST | TOTAL_COST | BOTH_COST | DATED_COST
+
+%import common.WS_INLINE -> _WS
 
 %import .numbers.SIGNED_NUMBER
-%import .amount.amount
-%import .date.date
+%import .amount.AMOUNT
+%import .date.DATE

@@ -2,20 +2,8 @@ _EMPTY_LINE: _WS_INLINE* _NL+
 COMMENT_LINE: _WS_INLINE* COMMENT [_NL]
 ?line: _EMPTY_LINE | COMMENT_LINE
 
-entries:  open
-        | close
-        | transaction
-        | event
-        | note
-        | document
-        | price
-        | balance
-        | pad
-        | commodity
-        | include
-        | option
-        | plugin
-        | line
+entries:  transaction
+//        | line
 
 start: entries
 

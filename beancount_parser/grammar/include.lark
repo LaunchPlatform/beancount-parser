@@ -1,6 +1,5 @@
-include: "include" ESCAPED_STRING [COMMENT] [_NL]
+include: "include" ESCAPED_STRING [COMMENT]
 
 %import common.ESCAPED_STRING
-%import common.NEWLINE -> _NL
 
 %import .comment.COMMENT

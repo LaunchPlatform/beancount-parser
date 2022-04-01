@@ -25,6 +25,7 @@ def make_parser() -> typing.Callable:
             ),
             import_paths=[GRAMMAR_FOLDER],
             parser="lalr",
+            debug=True,
         )
 
     return _make_parser

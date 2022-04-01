@@ -2,12 +2,12 @@ METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
 ?metadata_value: ESCAPED_STRING
                     | ACCOUNT
                     | CURRENCY
+                    | DATE
                     | SIGNED_NUMBER
                     | TAGS
-                    | date
-                    | amount
+                    | AMOUNT
 metadata_item: METADATA_KEY ":" metadata_value
-metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+ [_NL]
+metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+
 
 %import common.LCASE_LETTER
 %import common.LETTER
@@ -21,6 +21,6 @@ metadata_lines: (_NL _WS_INLINE+ metadata_item [COMMENT])+ [_NL]
 %import .numbers.SIGNED_NUMBER
 %import .currency.CURRENCY
 %import .tag.TAGS
-%import .date.date
-%import .amount.amount
+%import .date.DATE
+%import .amount.AMOUNT
 

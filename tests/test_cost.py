@@ -7,6 +7,10 @@ from lark.exceptions import UnexpectedCharacters
 
 @pytest.fixture
 def cost_parser(make_parser: typing.Callable) -> Lark:
+    import logging
+    from lark import logger
+
+    logger.setLevel(level=logging.DEBUG)
     return make_parser(module="cost", rule="cost", ignore_spaces=True)
 
 

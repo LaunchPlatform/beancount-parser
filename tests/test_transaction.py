@@ -5,8 +5,6 @@ import pytest
 from lark import Lark
 from lark.exceptions import UnexpectedInput
 
-from beancount_parser.parser import GRAMMAR_FOLDER
-
 
 @pytest.fixture
 def posting_parser(make_parser: typing.Callable) -> Lark:

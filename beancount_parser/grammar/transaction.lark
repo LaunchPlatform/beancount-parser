@@ -16,7 +16,7 @@ posting: (long_posting | short_posting) [metadata_lines]
 ?annotation_item: [TAG | LINK]
 annotations: annotation_item [_WS_INLINE+ annotation_item]
 
-transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [annotations] [COMMENT] [metadata_lines]
+transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [annotations] [COMMENT]
 transaction_body: (_NL _WS_INLINE+ posting)+ [_NL]
 transaction: transaction_header transaction_body
 

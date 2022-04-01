@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedCharacters
 
 @pytest.fixture
 def date_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="date", rule="date")
+    return make_parser(module="date", rule="DATE")
 
 
 @pytest.mark.parametrize(
