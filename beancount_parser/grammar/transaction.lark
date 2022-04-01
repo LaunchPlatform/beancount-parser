@@ -13,7 +13,10 @@ long_posting: [FLAG] ACCOUNT amount [cost] [price] [COMMENT]
 short_posting: [FLAG] ACCOUNT [COMMENT]
 posting: (long_posting | short_posting) [metadata_lines]
 
-transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [COMMENT] [metadata_lines]
+?annotation_item: [TAG | LINK]
+annotations: annotation_item [_WS_INLINE+ annotation_item]
+
+transaction_header: date [TXN | FLAG] [[PAYEE] NARRATION] [annotations] [COMMENT] [metadata_lines]
 transaction_body: (_NL _WS_INLINE+ posting)+ [_NL]
 transaction: transaction_header transaction_body
 
@@ -26,6 +29,8 @@ transaction: transaction_header transaction_body
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
 %import .currency.CURRENCY
+%import .tag.TAG
+%import .link.LINK
 %import .date.date
 %import .amount.amount
 %import .price.price

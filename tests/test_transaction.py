@@ -172,6 +172,13 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
             Income -10 USD
         """
         ),
+        dedent(
+            """\
+        1970-01-01 * "Foobar" #my-hash-tag ^travel #second ^second
+            Assets  10 USD
+            Income -10 USD
+        """
+        ),
     ],
 )
 def test_parse_transaction(transaction_parser: Lark, text: str):
