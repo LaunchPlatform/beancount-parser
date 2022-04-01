@@ -85,22 +85,19 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
             """\
         1970-01-01 * "Foobar"
             Assets  10 USD
-            Income -10 USD
-        """
+            Income -10 USD"""
         ),
         dedent(
             """\
         1970-01-01 * "Foobar"
             Assets  10 USD
-            Income
-        """
+            Income"""
         ),
         dedent(
             """\
         1970-01-01 * "Foobar" ; header
             Assets  10 USD ; posting body
-            Income -10 USD ; posting body
-        """
+            Income -10 USD ; posting body"""
         ),
         dedent(
             """\
@@ -108,15 +105,13 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
             statement: "foobar.pdf"
             Assets  10 USD
                 item: "item name" ; this is fine
-            Income -10 USD
-        """
+            Income -10 USD"""
         ),
         dedent(
             """\
         1970-01-01 * "Foobar" #my-hash-tag ^travel #second ^second
             Assets  10 USD
-            Income -10 USD
-        """
+            Income -10 USD"""
         ),
     ],
 )
