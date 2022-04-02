@@ -70,8 +70,7 @@ posting: detailed_posting | simple_posting
         | simple_directive
         | posting
         | metadata_item
-        | COMMENT
-statement: directive [COMMENT] [_NL]
+statement: (directive [COMMENT] | COMMENT) [_NL]
 ?start: statement*
 
 %import common.ESCAPED_STRING

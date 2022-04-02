@@ -66,6 +66,7 @@ def parser() -> Lark:
         
         """
         ),
+        "",
     ],
 )
 def test_parse(parser: Lark, text: str):
