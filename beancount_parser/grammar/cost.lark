@@ -1,6 +1,0 @@
-
-%import common.WS_INLINE -> _WS
-
-%import .numbers.SIGNED_NUMBER
-%import .amount.AMOUNT
-%import .date.DATE

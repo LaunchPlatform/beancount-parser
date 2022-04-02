@@ -2,7 +2,7 @@ currencies: CURRENCY ("," CURRENCY)*
 amount: SIGNED_NUMBER CURRENCY
 
 // Metadata
-METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
+METADATA_KEY: _WS+ LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
 ?metadata_value: ESCAPED_STRING
                     | ACCOUNT
                     | CURRENCY
@@ -31,8 +31,7 @@ metadata_item: METADATA_KEY ":" metadata_value
                 | document
                 | note
                 | pad
-
-date_directive: all_date_directive ([CNL_INDENT] metadata_item)*
+date_directive: all_date_directive (CNL metadata_item)*
 
 // Simple directives
 ?option: "option" ESCAPED_STRING ESCAPED_STRING
@@ -50,15 +49,15 @@ date_directive: all_date_directive ([CNL_INDENT] metadata_item)*
 ?dated_cost: "{" amount "," DATE "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
 
-per_unit_price: "@" amount
-total_price: "@@" amount
+?per_unit_price: "@" amount
+?total_price: "@@" amount
 tx_price: per_unit_price | total_price
 
 ?detailed_posting: [FLAG] ACCOUNT amount [cost] [tx_price]
 // the special case where only Account is present
 ?simple_posting: [FLAG] ACCOUNT
 ?all_posting: detailed_posting | simple_posting
-posting: all_posting ([CNL_INDENT] metadata_item)*
+posting: all_posting (CNL metadata_item)*
 
 // Transaction
 NARRATION: ESCAPED_STRING
@@ -68,15 +67,13 @@ annotation_item: TAG | LINK
 annotations: annotation_item+
 
 ?txn_header: DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
-txn_header_meta: txn_header ([CNL_INDENT] metadata_item)*
+txn_header_meta: txn_header (CNL metadata_item)*
 transaction_body: posting+
 transaction: txn_header_meta transaction_body
 
 directive: date_directive | simple_directive | transaction
 statement: directive [CNL]
 start: statement*
-
-CNL_INDENT: CNL _WS+
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
