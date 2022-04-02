@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "beancount-parser"
-version = "0.1.2"
+version = "0.1.3"
 description = "Standalone Lark based Beancount syntax parser (not relying on Beancount library), MIT license"
 authors = ["Fang-Pen Lin <fangpen@launchplatform.com>"]
 license = "MIT"
