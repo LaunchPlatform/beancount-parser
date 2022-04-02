@@ -46,6 +46,9 @@ def parser() -> Lark:
 
     2022-03-31
         Assets:MyBank 12.34 USD
+        
+    2022-03-31 "foo" "bar"
+        Assets:MyBank 12.34 USD
     
     2022-03-31 * "Foobar"
         document: "foobar.pdf" ; my doc

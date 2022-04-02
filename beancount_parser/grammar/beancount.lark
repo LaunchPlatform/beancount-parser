@@ -14,7 +14,7 @@ metadata_item: METADATA_KEY ":" metadata_value
 
 // Date directives
 NARRATION: ESCAPED_STRING
-PAYEE: ESCAPED_STRING
+PAYEE_NARRATION: ESCAPED_STRING _WS+ ESCAPED_STRING
 
 annotation_item: TAG | LINK
 annotations: annotation_item+
@@ -28,7 +28,7 @@ annotations: annotation_item+
 ?note:      DATE "note" ACCOUNT ESCAPED_STRING
 ?pad:       DATE "pad" ACCOUNT ACCOUNT
 ?price:     DATE "price" CURRENCY amount
-?txn:       DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
+?txn:       DATE ["txn" | FLAG] [PAYEE_NARRATION | NARRATION] [annotations]
 
 date_directive: open
                 | close
