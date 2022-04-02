@@ -2,7 +2,7 @@ import typing
 
 import pytest
 from lark import Lark
-from lark.exceptions import UnexpectedCharacters
+from lark.exceptions import UnexpectedInput
 
 
 @pytest.fixture
@@ -34,5 +34,5 @@ def test_parse_cost(cost_parser: Lark, text: str):
     ],
 )
 def test_parse_bad_cost(cost_parser: Lark, text: str):
-    with pytest.raises(UnexpectedCharacters):
+    with pytest.raises(UnexpectedInput):
         cost_parser.parse(text)
