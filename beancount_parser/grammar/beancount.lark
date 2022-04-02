@@ -45,7 +45,7 @@ date_directive: open
 ?include: "include" ESCAPED_STRING
 ?plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING]
 
-?simple_directive: option
+simple_directive: option
                  | include
                  | plugin
 
@@ -65,7 +65,7 @@ tx_price: per_unit_price | total_price
 ?simple_posting: [FLAG] ACCOUNT
 posting: detailed_posting | simple_posting
 
-directive: date_directive
+?directive: date_directive
         | simple_directive
         | posting
         | metadata_item
