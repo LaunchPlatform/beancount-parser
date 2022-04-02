@@ -1,5 +1,4 @@
 import typing
-from textwrap import dedent
 
 import pytest
 from lark import Lark
