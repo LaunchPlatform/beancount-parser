@@ -38,6 +38,7 @@ def parser() -> Lark:
     1970-01-01 note Assets:MyBank "this is my first bank account"
     1970-01-01 open Assets:My2ndBank USD,BTC
     1970-01-01 close Assets:My2ndBank
+    1970-01-01 price BTC 100.0 USD
     1970-01-01 commodity USD
     
        ; comment
@@ -58,6 +59,12 @@ def parser() -> Lark:
             source: "invoice.pdf"
 
     """
+        ),
+        dedent(
+            """\
+        ;; -*- mode: org; mode: beancount; -*-
+        
+        """
         ),
     ],
 )
