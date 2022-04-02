@@ -1,5 +1,0 @@
-option: "option" ESCAPED_STRING ESCAPED_STRING [COMMENT]
-
-%import common.ESCAPED_STRING
-
-%import .comment.COMMENT

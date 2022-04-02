@@ -8,18 +8,29 @@ amount: SIGNED_NUMBER CURRENCY
 ?commodity: DATE "commodity" CURRENCY
 ?document:  DATE "document" ACCOUNT ESCAPED_STRING
 ?note:      DATE "note" ACCOUNT ESCAPED_STRING
+?pad:       DATE "pad" ACCOUNT amount
+?price:     DATE "price" CURRENCY amount
 
-directive: open
-        | close
-        | balance
-        | event
-        | commodity
-        | document
-        | note
+?date_directive: open
+            | close
+            | balance
+            | event
+            | commodity
+            | document
+            | note
+            | pad
 
-statement: directive
+?option: "option" ESCAPED_STRING ESCAPED_STRING
+?include: "include" ESCAPED_STRING
+?plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING]
 
-start: directive
+?simple_directive: option
+                 | include
+                 | plugin
+
+directive: date_directive | simple_directive
+statement: directive [NEWLINE]
+start: statement*
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
