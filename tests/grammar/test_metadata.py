@@ -7,17 +7,17 @@ from lark.exceptions import UnexpectedCharacters
 
 @pytest.fixture
 def metadata_key_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="metadata", rule="METADATA_KEY")
+    return make_parser(module="beancount", rule="METADATA_KEY")
 
 
 @pytest.fixture
 def metadata_value_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="metadata", rule="metadata_value", ignore_spaces=True)
+    return make_parser(module="beancount", rule="metadata_value", ignore_spaces=True)
 
 
 @pytest.fixture
 def metadata_item_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="metadata", rule="metadata_item", ignore_spaces=True)
+    return make_parser(module="beancount", rule="metadata_item", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
