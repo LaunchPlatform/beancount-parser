@@ -101,8 +101,18 @@ def test_parse_transaction_body(transaction_body_parser: Lark, text: str):
         ),
         dedent(
             """\
-        1970-01-01 * "Foobar"
-            statement: "foobar.pdf"
+        1970-01-01 * "Foobar"   
+            statement: "foobar.pdf"; my doc
+            document-2: "egg-spam.pdf"
+            Assets  10 USD
+                item: "item name" ; this is fine
+            Income -10 USD"""
+        ),
+        dedent(
+            """\
+        1970-01-01 * "Foobar"   #hash ^link ;comment
+            statement: "foobar.pdf"; my doc
+            document-2: "egg-spam.pdf"
             Assets  10 USD
                 item: "item name" ; this is fine
             Income -10 USD"""
