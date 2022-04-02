@@ -37,7 +37,12 @@ jobs:
 workflows:
   test:
     jobs:
-      - test
+      - test:
+          filters:
+            # needed for deploy build
+            # ref: https://discuss.circleci.com/t/builds-for-tags-not-triggering/17681/7
+            tags:
+              only: /^.*/
       - build-and-publish:
           requires:
             - test
