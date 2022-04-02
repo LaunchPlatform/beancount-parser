@@ -1,6 +1,18 @@
 currencies: CURRENCY ("," CURRENCY)*
 amount: SIGNED_NUMBER CURRENCY
 
+// Metadata
+METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
+?metadata_value: ESCAPED_STRING
+                    | ACCOUNT
+                    | CURRENCY
+                    | DATE
+                    | SIGNED_NUMBER
+                    | TAGS
+                    | amount
+metadata_item: METADATA_KEY ":" metadata_value
+
+// Date directives
 ?open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
 ?close:     DATE "close" ACCOUNT
 ?balance:   DATE "balance" ACCOUNT amount
@@ -20,6 +32,7 @@ amount: SIGNED_NUMBER CURRENCY
             | note
             | pad
 
+// Simple directives
 ?option: "option" ESCAPED_STRING ESCAPED_STRING
 ?include: "include" ESCAPED_STRING
 ?plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING]
@@ -29,18 +42,22 @@ amount: SIGNED_NUMBER CURRENCY
                  | plugin
 
 directive: date_directive | simple_directive
-statement: directive [NEWLINE]
+statement: directive [CNL]
 start: statement*
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
+%import common.NEWLINE -> _NL
+%import common.LCASE_LETTER
+%import common.LETTER
+%import common.DIGIT
 
+%import .comment.COMMON_OR_NEWLINE -> CNL
 %import .numbers.SIGNED_NUMBER
-%import .comment.COMMENT
-%import .comment.NEWLINE
 %import .account.ACCOUNT
 %import .currency.CURRENCY
 %import .date.DATE
+%import .tag.TAGS
 
 %ignore _WS
-%ignore NEWLINE
+%ignore CNL

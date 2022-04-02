@@ -14,7 +14,14 @@ def parser() -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "1970-01-01 open Assets:MyBank USD",
+        dedent(
+            """\
+    1970-01-01 open Assets:MyBank USD
+    1970-01-01 balance Assets:MyBank 123 USD
+    
+    
+    """
+        ),
     ],
 )
 def test_parse(parser: Lark, text: str):

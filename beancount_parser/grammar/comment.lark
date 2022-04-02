@@ -1,4 +1,4 @@
 COMMENT: ";" /[^\n]*/
-NEWLINE: (_NL | COMMENT) +
+COMMON_OR_NEWLINE: (_NL | COMMENT)+
 
 %import common.NEWLINE -> _NL
