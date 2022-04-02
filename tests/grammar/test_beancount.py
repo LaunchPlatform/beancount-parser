@@ -17,6 +17,7 @@ def parser() -> Lark:
         dedent(
             """\
     1970-01-01 open Assets:MyBank USD
+        foo: "bar"
     1970-01-01 balance Assets:MyBank 123 USD
     
     

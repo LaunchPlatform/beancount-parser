@@ -23,14 +23,16 @@ metadata_item: METADATA_KEY ":" metadata_value
 ?pad:       DATE "pad" ACCOUNT amount
 ?price:     DATE "price" CURRENCY amount
 
-?date_directive: open
-            | close
-            | balance
-            | event
-            | commodity
-            | document
-            | note
-            | pad
+?all_date_directive: open
+                | close
+                | balance
+                | event
+                | commodity
+                | document
+                | note
+                | pad
+
+date_directive: all_date_directive ([CNL_INDENT] metadata_item)*
 
 // Simple directives
 ?option: "option" ESCAPED_STRING ESCAPED_STRING
@@ -55,7 +57,8 @@ tx_price: per_unit_price | total_price
 ?detailed_posting: [FLAG] ACCOUNT amount [cost] [tx_price]
 // the special case where only Account is present
 ?simple_posting: [FLAG] ACCOUNT
-posting: detailed_posting | simple_posting
+?all_posting: detailed_posting | simple_posting
+posting: all_posting ([CNL_INDENT] metadata_item)*
 
 // Transaction
 NARRATION: ESCAPED_STRING
@@ -64,15 +67,16 @@ PAYEE: ESCAPED_STRING
 annotation_item: TAG | LINK
 annotations: annotation_item+
 
-transaction_header: DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
-//transaction_body: (posting | metadata_line)+
-//transaction: transaction_header transaction_body
+?txn_header: DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
+txn_header_meta: txn_header ([CNL_INDENT] metadata_item)*
+transaction_body: posting+
+transaction: txn_header_meta transaction_body
 
-
-
-directive: date_directive | simple_directive
+directive: date_directive | simple_directive | transaction
 statement: directive [CNL]
 start: statement*
+
+CNL_INDENT: CNL _WS+
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
