@@ -82,7 +82,6 @@ statement: directive [COMMENT] [_NL]
 %import common.DIGIT
 
 %import .comment.COMMENT
-%import .comment.COMMON_OR_NEWLINE -> _CNL
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
 %import .flag.FLAG
