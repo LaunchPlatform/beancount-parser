@@ -38,6 +38,7 @@ date_directive: open
                 | document
                 | note
                 | pad
+                | price
                 | txn
 
 // Simple directives
