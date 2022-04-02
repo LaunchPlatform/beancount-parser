@@ -1,8 +1,3 @@
-PER_UNIT_COST: "{" _WS* AMOUNT _WS* "}"
-TOTAL_COST: "{{" _WS* AMOUNT  _WS* "}}"
-BOTH_COST: "{" _WS* SIGNED_NUMBER  _WS* "#"  _WS* AMOUNT  _WS* "}"
-DATED_COST: "{" _WS* AMOUNT _WS* "," _WS* DATE _WS* "}"
-?cost: PER_UNIT_COST | TOTAL_COST | BOTH_COST | DATED_COST
 
 %import common.WS_INLINE -> _WS
 

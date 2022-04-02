@@ -1,7 +1,0 @@
-PER_UNIT_PRICE: "@" _WS* AMOUNT
-TOTAL_PRICE: "@@" _WS* AMOUNT
-TX_PRICE: PER_UNIT_PRICE | TOTAL_PRICE
-
-%import common.WS_INLINE -> _WS
-
-%import .amount.AMOUNT

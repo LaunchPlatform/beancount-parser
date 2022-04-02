@@ -41,6 +41,35 @@ metadata_item: METADATA_KEY ":" metadata_value
                  | include
                  | plugin
 
+// Posting
+?per_unit_cost: "{" amount "}"
+?total_cost: "{{" amount "}}"
+?both_cost: "{" SIGNED_NUMBER  "#" amount "}"
+?dated_cost: "{" amount "," DATE "}"
+cost: per_unit_cost | total_cost | both_cost | dated_cost
+
+per_unit_price: "@" amount
+total_price: "@@" amount
+tx_price: per_unit_price | total_price
+
+?detailed_posting: [FLAG] ACCOUNT amount [cost] [tx_price]
+// the special case where only Account is present
+?simple_posting: [FLAG] ACCOUNT
+posting: detailed_posting | simple_posting
+
+// Transaction
+NARRATION: ESCAPED_STRING
+PAYEE: ESCAPED_STRING
+
+annotation_item: TAG | LINK
+annotations: annotation_item+
+
+transaction_header: DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
+//transaction_body: (posting | metadata_line)+
+//transaction: transaction_header transaction_body
+
+
+
 directive: date_directive | simple_directive
 statement: directive [CNL]
 start: statement*
@@ -55,9 +84,12 @@ start: statement*
 %import .comment.COMMON_OR_NEWLINE -> CNL
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
+%import .flag.FLAG
 %import .currency.CURRENCY
 %import .date.DATE
 %import .tag.TAGS
+%import .tag.TAG
+%import .link.LINK
 
 %ignore _WS
 %ignore CNL
