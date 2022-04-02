@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def balance_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="balance", rule="balance", ignore_spaces=True)
+    return make_parser(module="beancount", rule="balance", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -15,7 +15,6 @@ def balance_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31 balance Assets 12.34 USD",
         "2022-03-31 balance Assets:Bank 45.67 BTC",
-        "2022-03-31 balance Assets:Bank 45.67 BTC ; this is a comment",
     ],
 )
 def test_parse_balance(balance_parser: Lark, text: str):

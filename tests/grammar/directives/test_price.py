@@ -7,14 +7,13 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def price_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="price", rule="price", ignore_spaces=True)
+    return make_parser(module="beancount", rule="price", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         "2022-03-31 price BTC 12.34 USD",
-        "2022-03-31 price BTC 12.34 USD ; this is a comment",
     ],
 )
 def test_parse_price(price_parser: Lark, text: str):

@@ -7,14 +7,12 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def document_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="document", rule="document", ignore_spaces=True)
+    return make_parser(module="beancount", rule="document", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
-        '2022-03-31 document Assets "/path/to/the/file.pdf"',
-        '2022-03-31 document Assets "/path/to/the/file.pdf" ; this is a comment',
         '2022-03-31 document Assets "/path/to/the/file.pdf"',
     ],
 )

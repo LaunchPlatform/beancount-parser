@@ -7,14 +7,13 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def include_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="include", rule="include", ignore_spaces=True)
+    return make_parser(module="beancount", rule="include", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         'include "/path/to/file.bean"',
-        'include "/path/to/file.bean" ; this is a comment',
     ],
 )
 def test_parse_include(include_parser: Lark, text: str):

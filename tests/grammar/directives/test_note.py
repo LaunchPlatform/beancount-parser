@@ -7,14 +7,13 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def note_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="note", rule="note", ignore_spaces=True)
+    return make_parser(module="beancount", rule="note", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         '2022-03-31 note Assets "this account looks good"',
-        '2022-03-31 note Assets "this account looks good" ; this is a comment',
     ],
 )
 def test_parse_note(note_parser: Lark, text: str):

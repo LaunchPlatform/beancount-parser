@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def open_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="open", rule="open", ignore_spaces=True)
+    return make_parser(module="beancount", rule="open", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -16,7 +16,6 @@ def open_parser(make_parser: typing.Callable) -> Lark:
         "2022-03-31 open Assets",
         "2022-03-31 open Assets:Bank",
         "2022-03-31 open Assets:Bank USD",
-        "2022-03-31 open Assets:Bank USD ; this is a comment",
         "2022-03-31 open Assets:Bank USD,BTC",
         '2022-03-31 open Assets:Bank USD,BTC "STRICT"',
         '2022-03-31 open Assets:Bank "STRICT"',

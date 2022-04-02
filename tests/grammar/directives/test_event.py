@@ -7,14 +7,14 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def event_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="event", rule="event", ignore_spaces=True)
+    return make_parser(module="beancount", rule="event", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         '2022-03-31 event "employer" "Launch Platform LLC"',
-        '2022-03-31 event "location" "San Francisco"; this is a comment',
+        '2022-03-31 event "location" "San Francisco"',
     ],
 )
 def test_parse_event(event_parser: Lark, text: str):

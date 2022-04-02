@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def plugin_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="plugin", rule="plugin", ignore_spaces=True)
+    return make_parser(module="beancount", rule="plugin", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -15,7 +15,6 @@ def plugin_parser(make_parser: typing.Callable) -> Lark:
     [
         'plugin "beancount.plugin"',
         'plugin "beancount.plugin" "config"',
-        'plugin "beancount.plugin" "config" ; this is a comment',
     ],
 )
 def test_parse_plugin(plugin_parser, text: str):

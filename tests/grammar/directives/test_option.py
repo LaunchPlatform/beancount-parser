@@ -7,14 +7,13 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def option_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="option", rule="option", ignore_spaces=True)
+    return make_parser(module="beancount", rule="option", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         'option "key" "value"',
-        'option "key" "value" ; this is a comment',
     ],
 )
 def test_parse_option(option_parser, text: str):

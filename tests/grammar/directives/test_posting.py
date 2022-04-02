@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def posting_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="posting", rule="posting", ignore_spaces=True)
+    return make_parser(module="beancount", rule="posting", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -17,8 +17,6 @@ def posting_parser(make_parser: typing.Callable) -> Lark:
         "Assets -10 USD",
         "Assets:Bank -10.0 USD",
         "Assets:Bank -10.0 TWD",
-        "Assets:Bank -10.0 TWD ; this is a comment",
-        "Assets:Bank -10.0 TWD; this is a comment",
         "Assets:Bank -10.0 TWD @ 2.56 USD",
         "Assets:Bank -10.0 TWD @  2.56  USD",
         "Assets:Bank -10.0 TWD @@ 2.56 USD",

@@ -7,14 +7,13 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def pad_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="pad", rule="pad", ignore_spaces=True)
+    return make_parser(module="beancount", rule="pad", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         "2022-03-31 pad Assets Expenses",
-        "2022-03-31 pad Assets:Bank Expenses ; this is a comment",
     ],
 )
 def test_parse_pad(pad_parser: Lark, text: str):

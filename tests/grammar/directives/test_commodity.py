@@ -7,15 +7,14 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def commodity_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="commodity", rule="commodity", ignore_spaces=True)
+    return make_parser(module="beancount", rule="commodity", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
     "text",
     [
         "2022-03-31 commodity USD",
-        "2022-03-31 commodity BTC ; this is a comment",
-        "2022-03-31 commodity BTC ; this is a comment",
+        "2022-03-31 commodity BTC",
     ],
 )
 def test_parse_commodity(commodity_parser: Lark, text: str):

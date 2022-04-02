@@ -11,7 +11,7 @@ def cost_parser(make_parser: typing.Callable) -> Lark:
     from lark import logger
 
     logger.setLevel(level=logging.DEBUG)
-    return make_parser(module="cost", rule="cost", ignore_spaces=True)
+    return make_parser(module="beancount", rule="cost", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(

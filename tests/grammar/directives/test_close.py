@@ -7,7 +7,7 @@ from lark.exceptions import UnexpectedInput
 
 @pytest.fixture
 def close_parser(make_parser: typing.Callable) -> Lark:
-    return make_parser(module="close", rule="close", ignore_spaces=True)
+    return make_parser(module="beancount", rule="close", ignore_spaces=True)
 
 
 @pytest.mark.parametrize(
@@ -15,7 +15,6 @@ def close_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31 close Assets",
         "2022-03-31 close Assets:Bank",
-        "2022-03-31 close Assets:Bank ; this is a comment",
     ],
 )
 def test_parse_close(close_parser: Lark, text: str):

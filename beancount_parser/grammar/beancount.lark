@@ -26,7 +26,7 @@ annotations: annotation_item+
 ?commodity: DATE "commodity" CURRENCY
 ?document:  DATE "document" ACCOUNT ESCAPED_STRING
 ?note:      DATE "note" ACCOUNT ESCAPED_STRING
-?pad:       DATE "pad" ACCOUNT amount
+?pad:       DATE "pad" ACCOUNT ACCOUNT
 ?price:     DATE "price" CURRENCY amount
 ?txn:       DATE ["txn" | FLAG] [[PAYEE] NARRATION] [annotations]
 
