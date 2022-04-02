@@ -70,11 +70,9 @@ posting: detailed_posting | simple_posting
         | simple_directive
         | posting
         | metadata_item
-        | COMMENT_LINE
-statement: directive [_CNL]
+        | COMMENT
+statement: directive [COMMENT] [_NL]
 ?start: statement*
-
-COMMENT_LINE: COMMENT _NL
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
