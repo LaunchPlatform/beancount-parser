@@ -1,5 +1,7 @@
-NUMBER: INT | DECIMAL
+COMMA_SEP_NUMBER: DIGIT~1..3 ("," DIGIT~3)+ ["." DIGIT+]
+NUMBER: INT | DECIMAL | COMMA_SEP_NUMBER
 SIGNED_NUMBER: [ "+" | "-" ] NUMBER
 
 %import common.INT
+%import common.DIGIT
 %import common.DECIMAL
