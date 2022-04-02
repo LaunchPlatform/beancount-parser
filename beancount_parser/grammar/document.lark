@@ -1,9 +1,0 @@
-DOCUMENT_PREFIX.20: DATE _WS+ "document"
-document: DOCUMENT_PREFIX ACCOUNT ESCAPED_STRING [COMMENT]
-
-%import common.ESCAPED_STRING
-%import common.WS_INLINE -> _WS
-
-%import .comment.COMMENT
-%import .account.ACCOUNT
-%import .date.DATE

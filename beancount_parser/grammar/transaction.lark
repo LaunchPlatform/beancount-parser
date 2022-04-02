@@ -1,13 +1,12 @@
 TXN: "txn"
 NARRATION: ESCAPED_STRING
 PAYEE_NARRATION: ESCAPED_STRING _WS+ ESCAPED_STRING
-_NL_INDENT: _NL _WS+
 
 annotation_item: TAG | LINK
 annotations: annotation_item+
 
 transaction_header: DATE [TXN | FLAG] [PAYEE_NARRATION | NARRATION] [annotations] [COMMENT]
-transaction_body: (_NL_INDENT (posting | metadata_line))+
+transaction_body: (posting | metadata_line)+
 transaction: transaction_header transaction_body
 
 %import common.ESCAPED_STRING
@@ -26,3 +25,5 @@ transaction: transaction_header transaction_body
 %import .posting.posting
 %import .metadata.metadata_line
 %import .metadata.metadata_lines
+
+%ignore COMMENT

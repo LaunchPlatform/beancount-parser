@@ -1,7 +1,0 @@
-COMMODITY_PREFIX.20: DATE _WS+ "commodity"
-commodity: COMMODITY_PREFIX CURRENCY [COMMENT]
-
-%import common.WS_INLINE -> _WS
-%import .comment.COMMENT
-%import .currency.CURRENCY
-%import .date.DATE

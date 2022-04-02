@@ -1,8 +1,0 @@
-CLOSE_PREFIX.20: DATE _WS+ "close"
-close: CLOSE_PREFIX ACCOUNT [COMMENT]
-
-%import common.WS_INLINE -> _WS
-
-%import .comment.COMMENT
-%import .account.ACCOUNT
-%import .date.DATE

@@ -1,8 +1,0 @@
-EVENT_PREFIX.20: DATE _WS+ "event"
-event: EVENT_PREFIX ESCAPED_STRING ESCAPED_STRING [COMMENT]
-
-%import common.ESCAPED_STRING
-%import common.WS_INLINE -> _WS
-
-%import .comment.COMMENT
-%import .date.DATE

@@ -1,40 +1,35 @@
-_EMPTY_LINE: _WS* _NL+
-COMMENT_LINE: _WS* COMMENT [_NL]
-_NL_INDENT: _NL _WS+
+currencies: CURRENCY ("," CURRENCY)*
+amount: SIGNED_NUMBER CURRENCY
 
-_directives_with_metadata: open
-            | close
-            | event
-            | note
-            | document
-            | price
-            | balance
-            | pad
-            | commodity
-_directives_without_metadata: include
-            | option
-            | plugin
-_directive: (_directives_with_metadata [(_NL_INDENT metadata_line)+] | _directives_without_metadata | transaction) [_NL]
+?open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
+?close:     DATE "close" ACCOUNT
+?balance:   DATE "balance" ACCOUNT amount
+?event:     DATE "event" ESCAPED_STRING ESCAPED_STRING
+?commodity: DATE "commodity" CURRENCY
+?document:  DATE "document" ACCOUNT ESCAPED_STRING
+?note:      DATE "note" ACCOUNT ESCAPED_STRING
 
-start: (_directive | _EMPTY_LINE | COMMENT_LINE)*
+directive: open
+        | close
+        | balance
+        | event
+        | commodity
+        | document
+        | note
 
+statement: directive
+
+start: directive
+
+%import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
-%import common.NEWLINE -> _NL
 
+%import .numbers.SIGNED_NUMBER
 %import .comment.COMMENT
-%import .open.open
-%import .close.close
-%import .transaction.transaction
-%import .event.event
-%import .note.note
-%import .document.document
-%import .price.price
-%import .balance.balance
-%import .pad.pad
-%import .commodity.commodity
-%import .include.include
-%import .option.option
-%import .plugin.plugin
-%import .metadata.metadata_line
+%import .comment.NEWLINE
+%import .account.ACCOUNT
+%import .currency.CURRENCY
+%import .date.DATE
 
 %ignore _WS
+%ignore NEWLINE
