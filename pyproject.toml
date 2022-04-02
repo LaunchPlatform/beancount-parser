@@ -4,6 +4,7 @@ version = "0.1.2"
 description = "Standalone Lark based Beancount syntax parser (not relying on Beancount library), MIT license"
 authors = ["Fang-Pen Lin <fangpen@launchplatform.com>"]
 license = "MIT"
+repository = "https://github.com/LaunchPlatform/beancount-parser"
 
 [tool.poetry.dependencies]
 python = "^3.9"
