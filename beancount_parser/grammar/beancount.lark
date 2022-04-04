@@ -13,7 +13,7 @@ METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
 metadata_item: METADATA_KEY ":" metadata_value
 
 // Date directives
-annotation_item: TAG | LINK
+?annotation_item: TAG | LINK
 annotations: annotation_item+
 
 ?open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
