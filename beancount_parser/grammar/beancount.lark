@@ -67,7 +67,7 @@ posting: detailed_posting | simple_posting
         | simple_directive
         | posting
         | metadata_item
-statement: directive [COMMENT] | COMMENT | ORG_ANCHOR
+statement: directive [COMMENT] | COMMENT | SECTION_HEADER
 ?start: (statement _NL)* [statement]
 
 %import common.ESCAPED_STRING
@@ -78,7 +78,7 @@ statement: directive [COMMENT] | COMMENT | ORG_ANCHOR
 %import common.DIGIT
 
 %import .comment.COMMENT
-%import .org_anchor.ORG_ANCHOR
+%import .section_header.SECTION_HEADER
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
 %import .flag.FLAG
