@@ -70,8 +70,8 @@ posting: detailed_posting | simple_posting
         | simple_directive
         | posting
         | metadata_item
-statement: (directive [COMMENT] | COMMENT | ORG_ANCHOR) [_NL]
-?start: statement*
+statement: directive [COMMENT] | COMMENT | ORG_ANCHOR
+?start: (statement _NL)* [statement]
 
 %import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS

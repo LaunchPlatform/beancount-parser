@@ -33,6 +33,11 @@ def parser() -> Lark:
         ),
         dedent(
             """\
+    2022-03-31 * "Foobar"
+        Assets:MyBank 12.34 USD ; this is fine"""
+        ),
+        dedent(
+            """\
     1970-01-01 commodity USD
     1970-01-01 open Assets:MyBank USD
     1970-01-01 note Assets:MyBank "this is my first bank account"
@@ -74,5 +79,4 @@ def parser() -> Lark:
     ],
 )
 def test_parse(parser: Lark, text: str):
-    result = parser.parse(text)
-    assert result
+    parser.parse(text)
