@@ -45,11 +45,15 @@ def parser() -> Lark:
     ; comment
     1970-01-01 event "job" "working from home"
 
+    * org
+    
     2022-03-31
         Assets:MyBank 12.34 USD
         
     2022-03-31 "foo" "bar"
         Assets:MyBank 12.34 USD
+        
+    ** org2
     
     2022-03-31 * "Foobar"
         document: "foobar.pdf" ; my doc

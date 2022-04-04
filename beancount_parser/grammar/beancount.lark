@@ -70,7 +70,7 @@ posting: detailed_posting | simple_posting
         | simple_directive
         | posting
         | metadata_item
-statement: (directive [COMMENT] | COMMENT) [_NL]
+statement: (directive [COMMENT] | COMMENT | ORG_ANCHOR) [_NL]
 ?start: statement*
 
 %import common.ESCAPED_STRING
@@ -81,6 +81,7 @@ statement: (directive [COMMENT] | COMMENT) [_NL]
 %import common.DIGIT
 
 %import .comment.COMMENT
+%import .org_anchor.ORG_ANCHOR
 %import .numbers.SIGNED_NUMBER
 %import .account.ACCOUNT
 %import .flag.FLAG
