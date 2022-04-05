@@ -48,11 +48,11 @@ simple_directive: option
                  | plugin
 
 // Posting
-?per_unit_cost: "{" amount "}"
-?total_cost: "{{" amount "}}"
-?both_cost: "{" SIGNED_NUMBER  "#" amount "}"
-?dated_cost: "{" amount "," DATE "}"
-cost: per_unit_cost | total_cost | both_cost | dated_cost
+per_unit_cost: "{" amount "}"
+total_cost: "{{" amount "}}"
+both_cost: "{" SIGNED_NUMBER  "#" amount "}"
+dated_cost: "{" amount "," DATE "}"
+?cost: per_unit_cost | total_cost | both_cost | dated_cost
 
 per_unit_price: "@" amount
 total_price: "@@" amount
