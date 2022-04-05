@@ -54,11 +54,11 @@ simple_directive: option
 ?dated_cost: "{" amount "," DATE "}"
 cost: per_unit_cost | total_cost | both_cost | dated_cost
 
-?per_unit_price: "@" amount
-?total_price: "@@" amount
-tx_price: per_unit_price | total_price
+per_unit_price: "@" amount
+total_price: "@@" amount
+?posting_price: per_unit_price | total_price
 
-?detailed_posting: [FLAG] ACCOUNT amount [cost] [tx_price]
+?detailed_posting: [FLAG] ACCOUNT amount [cost] [posting_price]
 // the special case where only Account is present
 ?simple_posting: [FLAG] ACCOUNT
 posting: detailed_posting | simple_posting
