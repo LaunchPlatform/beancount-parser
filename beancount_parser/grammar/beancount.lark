@@ -58,10 +58,10 @@ per_unit_price: "@" amount
 total_price: "@@" amount
 ?posting_price: per_unit_price | total_price
 
-?detailed_posting: [FLAG] ACCOUNT amount [cost] [posting_price]
+detailed_posting: [FLAG] ACCOUNT amount [cost] [posting_price]
 // the special case where only Account is present
-?simple_posting: [FLAG] ACCOUNT
-posting: detailed_posting | simple_posting
+simple_posting: [FLAG] ACCOUNT
+?posting: detailed_posting | simple_posting
 
 ?directive: date_directive
         | simple_directive
