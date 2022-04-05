@@ -61,7 +61,7 @@ total_price: "@@" amount
 detailed_posting: [FLAG] ACCOUNT amount [cost] [posting_price]
 // the special case where only Account is present
 simple_posting: [FLAG] ACCOUNT
-?posting: detailed_posting | simple_posting
+posting: detailed_posting | simple_posting
 
 ?directive: date_directive
         | simple_directive
