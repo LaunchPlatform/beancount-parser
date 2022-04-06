@@ -39,9 +39,9 @@ date_directive: open
                 | txn
 
 // Simple directives
-?option: "option" ESCAPED_STRING ESCAPED_STRING
-?include: "include" ESCAPED_STRING
-?plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING]
+option: "option" ESCAPED_STRING ESCAPED_STRING
+include: "include" ESCAPED_STRING
+plugin: "plugin" ESCAPED_STRING [ESCAPED_STRING]
 
 simple_directive: option
                  | include
