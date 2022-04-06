@@ -16,16 +16,16 @@ metadata_item: METADATA_KEY ":" metadata_value
 ?annotation_item: TAG | LINK
 annotations: annotation_item+
 
-?open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
-?close:     DATE "close" ACCOUNT
-?balance:   DATE "balance" ACCOUNT amount
-?event:     DATE "event" ESCAPED_STRING ESCAPED_STRING
-?commodity: DATE "commodity" CURRENCY
-?document:  DATE "document" ACCOUNT ESCAPED_STRING
-?note:      DATE "note" ACCOUNT ESCAPED_STRING
-?pad:       DATE "pad" ACCOUNT ACCOUNT
-?price:     DATE "price" CURRENCY amount
-?txn:       DATE ["txn" | FLAG] [[ESCAPED_STRING] ESCAPED_STRING] [annotations]
+open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
+close:     DATE "close" ACCOUNT
+balance:   DATE "balance" ACCOUNT amount
+event:     DATE "event" ESCAPED_STRING ESCAPED_STRING
+commodity: DATE "commodity" CURRENCY
+document:  DATE "document" ACCOUNT ESCAPED_STRING
+note:      DATE "note" ACCOUNT ESCAPED_STRING
+pad:       DATE "pad" ACCOUNT ACCOUNT
+price:     DATE "price" CURRENCY amount
+txn:       DATE ["txn" | FLAG] [[ESCAPED_STRING] ESCAPED_STRING] [annotations]
 
 date_directive: open
                 | close
