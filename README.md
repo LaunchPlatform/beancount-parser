@@ -1,5 +1,8 @@
 # beancount-parser [![CircleCI](https://circleci.com/gh/LaunchPlatform/beancount-parser/tree/master.svg?style=svg)](https://circleci.com/gh/LaunchPlatform/beancount-parser/tree/master)
 Standalone [Lark](https://github.com/lark-parser/lark) LALR(1) based Beancount syntax parser (not relying on Beancount library), MIT license
+
+Please also checkout out [beancount-black](https://github.com/LaunchPlatform/beancount-black), an opinionated beancount code formatter based on beancount-parser.
+
 ## Features
 
 - **MIT licensed** - the only dependency is [Lark](https://github.com/lark-parser/lark)
