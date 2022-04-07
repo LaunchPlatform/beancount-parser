@@ -8,7 +8,7 @@ Please also checkout out [beancount-black](https://github.com/LaunchPlatform/bea
 - **MIT licensed** - the only dependency is [Lark](https://github.com/lark-parser/lark)
 - **Extremely fast** - LALR(1) is used
 - **Section awareness** - mac org symbol mark `*` will be parsed
-- **Comment awareness** - comments are preserved
+- **Comment awareness** - comments will be processed
 
 # Sponsor
 
