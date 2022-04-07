@@ -5,6 +5,7 @@ description = "Standalone Lark based Beancount syntax parser (not relying on Bea
 authors = ["Fang-Pen Lin <fangpen@launchplatform.com>"]
 license = "MIT"
 repository = "https://github.com/LaunchPlatform/beancount-parser"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
