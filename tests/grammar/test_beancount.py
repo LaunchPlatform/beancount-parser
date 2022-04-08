@@ -45,6 +45,7 @@ def parser() -> Lark:
     1970-01-01 close Assets:My2ndBank
     1970-01-01 price BTC 100.0 USD
     1970-01-01 commodity USD
+    1970-01-01 custom "string val" 123.45 USD TRUE FALSE 2022-04-01 Assets:Bank
     
        ; comment
     ; comment

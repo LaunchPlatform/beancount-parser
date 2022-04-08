@@ -16,6 +16,13 @@ metadata_item: METADATA_KEY ":" metadata_value
 ?annotation_item: TAG | LINK
 annotations: annotation_item+
 
+?custom_arg: DATE
+    | ACCOUNT
+    | ESCAPED_STRING
+    | SIGNED_NUMBER
+    | CURRENCY
+    | BOOLEAN
+
 open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
 close:     DATE "close" ACCOUNT
 balance:   DATE "balance" ACCOUNT amount
@@ -25,6 +32,7 @@ document:  DATE "document" ACCOUNT ESCAPED_STRING
 note:      DATE "note" ACCOUNT ESCAPED_STRING
 pad:       DATE "pad" ACCOUNT ACCOUNT
 price:     DATE "price" CURRENCY amount
+custom:    DATE "custom" custom_arg+
 txn:       DATE ["txn" | FLAG] [[ESCAPED_STRING] ESCAPED_STRING] [annotations]
 
 date_directive: open
@@ -36,6 +44,7 @@ date_directive: open
                 | note
                 | pad
                 | price
+                | custom
                 | txn
 
 // Simple directives
@@ -87,5 +96,6 @@ statement: directive [COMMENT] | COMMENT | SECTION_HEADER
 %import .tag.TAGS
 %import .tag.TAG
 %import .link.LINK
+%import .boolean.BOOLEAN
 
 %ignore _WS
