@@ -42,7 +42,7 @@ def test_parse_posting(posting_parser: Lark, text: str):
     "text",
     [
         "Assets 10",
-        "A -10 USD",
+        "a -10 USD",
         "@ Assets:Bank -10.0 TWD",
     ],
 )

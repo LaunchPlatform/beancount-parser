@@ -70,7 +70,7 @@ def test_parse_metadata_value(metadata_value_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "Abc",
+        "abc",
         "_abc",
         "_ABC",
         "_Abc",

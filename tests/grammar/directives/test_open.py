@@ -34,7 +34,7 @@ def test_parse_open(open_parser: Lark, text: str):
         "2022-03 open Assets:Bank USD",
         "2022-03-31 open Assets:Bank 123",
         '2022-03-31 open USD,BTC "STRICT"',
-        '2022-03-31 open Foobar USD,BTC "NONE"',
+        '2022-03-31 open assets USD,BTC "NONE"',
     ],
 )
 def test_parse_bad_open(open_parser: Lark, text: str):
