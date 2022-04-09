@@ -9,6 +9,7 @@ Please also checkout out [beancount-black](https://github.com/LaunchPlatform/bea
 - **Extremely fast** - LALR(1) is used
 - **Section awareness** - mac org symbol mark `*` will be parsed
 - **Comment awareness** - comments will be parsed
+- **Not a validator** - it does not validate beancount syntax, invalid beancount syntax may still pass the parsing
 
 # Sponsor
 
