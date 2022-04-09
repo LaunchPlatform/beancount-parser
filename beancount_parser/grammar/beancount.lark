@@ -23,6 +23,10 @@ annotations: annotation_item+
     | CURRENCY
     | BOOLEAN
 
+// make it a token so that it will present in the `children`, otherwise the number
+// of child for txn will be different makes it harder to process
+TXN: "txn"
+
 open:      DATE "open" ACCOUNT [currencies] [ESCAPED_STRING]
 close:     DATE "close" ACCOUNT
 balance:   DATE "balance" ACCOUNT amount
@@ -33,7 +37,7 @@ note:      DATE "note" ACCOUNT ESCAPED_STRING
 pad:       DATE "pad" ACCOUNT ACCOUNT
 price:     DATE "price" CURRENCY amount
 custom:    DATE "custom" custom_arg+
-txn:       DATE ["txn" | FLAG] [[ESCAPED_STRING] ESCAPED_STRING] [annotations]
+txn:       DATE [TXN | FLAG] [[ESCAPED_STRING] ESCAPED_STRING] [annotations]
 
 date_directive: open
                 | close
