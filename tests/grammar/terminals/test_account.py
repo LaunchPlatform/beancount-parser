@@ -31,6 +31,8 @@ def account_parser(make_parser: typing.Callable) -> Lark:
         "Income:Contracting",
         "Income:ProjectNumber8",
         "Equity:My1stHouse",
+        "Foobar",
+        "Foobar:Eggs:Spam",
     ],
 )
 def test_parse_account(account_parser: Lark, text: str):
@@ -40,7 +42,6 @@ def test_parse_account(account_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "Foobar",
         "assets:bank",
         "Assets:bank",
         ":Assets",
