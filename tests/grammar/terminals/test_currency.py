@@ -23,6 +23,7 @@ def currency_parser(make_parser: typing.Callable) -> Lark:
         "A_B",
         "A-B",
         "A-B-C",
+        "INF879O01027",
         "CONTRACT_HOURS",
     ],
 )
@@ -38,6 +39,8 @@ def test_parse_currency(currency_parser: Lark, text: str):
         "ABc",
         "@",
         "A@B",
+        "INF879O01027-",
+        "INF879O01027_",
     ],
 )
 def test_parse_bad_currency(currency_parser: Lark, text: str):
