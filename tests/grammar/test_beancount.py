@@ -73,12 +73,14 @@ def parser() -> Lark:
         dedent(
             """\
         ;; -*- mode: org; mode: beancount; -*-
-        
+
         """
         ),
         dedent(
             """\
     
+    
+       
     1970-01-01 open Assets:MyBank USD
     
     
@@ -87,6 +89,7 @@ def parser() -> Lark:
     
     """
         ),
+        "\n\n\n",
         "",
     ],
 )
