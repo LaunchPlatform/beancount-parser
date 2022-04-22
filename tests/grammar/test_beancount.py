@@ -89,6 +89,8 @@ def parser() -> Lark:
     
     """
         ),
+        # ensure empty spaces in line works
+        '2022-04-20 * "First transaction"\n  Assets:Account1  -1 USD\n  Assets:Account2     1 USD\n   \n2022-04-20 * "Second transaction"\n   Assets:Account1 1 USD\n   Assets:Account2  -1 USD',
         "\n\n\n",
         "",
     ],
