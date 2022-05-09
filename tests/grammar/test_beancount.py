@@ -89,6 +89,18 @@ def parser() -> Lark:
     
     """
         ),
+        # for multi-line plugin config issue
+        # ref: https://github.com/LaunchPlatform/beancount-parser/issues/11
+        dedent(
+            """\
+        plugin "plugins.zerosum" "{
+          'zerosum_accounts': {
+            'Equity:Transfers': ('Equity:Transfers:Matched', 7),
+          },
+          'flag_unmatched': True
+        }"
+        """
+        ),
         # ensure empty spaces in line works
         '2022-04-20 * "First transaction"\n  Assets:Account1  -1 USD\n  Assets:Account2     1 USD\n   \n2022-04-20 * "Second transaction"\n   Assets:Account1 1 USD\n   Assets:Account2  -1 USD',
         "\n\n\n",

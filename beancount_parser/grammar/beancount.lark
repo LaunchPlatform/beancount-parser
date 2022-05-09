@@ -84,7 +84,6 @@ _EMPTY_LINE: /[ \t]*[\r\n]/
 statement: directive [COMMENT] | COMMENT | SECTION_HEADER
 ?start: _EMPTY_LINE* (statement _NL+)* [statement]
 
-%import common.ESCAPED_STRING
 %import common.WS_INLINE -> _WS
 %import common.NEWLINE -> _NL
 %import common.LCASE_LETTER
@@ -102,5 +101,6 @@ statement: directive [COMMENT] | COMMENT | SECTION_HEADER
 %import .tag.TAG
 %import .link.LINK
 %import .boolean.BOOLEAN
+%import .escaped_string.ESCAPED_STRING
 
 %ignore _WS

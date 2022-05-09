@@ -1,0 +1,7 @@
+// The ESCAPED_STRING from official common.lark file doesn't support multi-line,
+// we change the inner string a bit to make it support multi-line
+// ref: https://github.com/lark-parser/lark/blob/8a77e42c83a034cf19e86f755013f8a432f36c79/lark/grammars/common.lark#L26-L29
+_STRING_INNER: /(.|\r?\n)*?/
+_STRING_ESC_INNER: _STRING_INNER /(?<!\\)(\\\\)*?/
+
+ESCAPED_STRING : "\"" _STRING_ESC_INNER "\""

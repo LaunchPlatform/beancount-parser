@@ -12,7 +12,6 @@ metadata_line: metadata_item [COMMENT]
 %import common.LCASE_LETTER
 %import common.LETTER
 %import common.DIGIT
-%import common.ESCAPED_STRING
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
@@ -21,4 +20,4 @@ metadata_line: metadata_item [COMMENT]
 %import .tag.TAGS
 %import .date.DATE
 %import .amount.AMOUNT
-
+%import .escaped_string.ESCAPED_STRING
