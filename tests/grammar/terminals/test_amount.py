@@ -16,6 +16,8 @@ def amount_parser(make_parser: typing.Callable) -> Lark:
         "12.34 USD",
         "-12.34 USD",
         "0.0 USD",
+        "1+2 USD",
+        "(1+2) USD",
         "500 BTC",
     ],
 )
@@ -29,6 +31,7 @@ def test_parse_amount(amount_parser: Lark, text: str):
         "12.34",
         "USD",
         "0..0 USD",
+        "1+ USD",
     ],
 )
 def test_parse_bad_amount(amount_parser: Lark, text: str):

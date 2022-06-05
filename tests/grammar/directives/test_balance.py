@@ -13,6 +13,7 @@ def balance_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
+        "2022-03-31 balance Assets:Bank 12.34 + 23.45 USD",
         "2022-03-31 balance Assets:Bank 45.67 BTC",
     ],
 )

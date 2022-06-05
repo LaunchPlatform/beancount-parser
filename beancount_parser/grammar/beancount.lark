@@ -1,5 +1,19 @@
+// Number
+
+// Reduce priority of unary operators to align with the beancount behavior that
+// "2000-01-01 custom 123 -456" is interpreted as "2000-01-01 custom -333"
+
+UNARY_OP.-10: "+" | "-"
+ADD_OP: "+" | "-"
+MUL_OP: "*" | "/"
+
+number_expr: number_add_expr
+?number_add_expr: number_mul_expr (ADD_OP number_mul_expr)*
+?number_mul_expr: number_atom (MUL_OP number_atom)*
+?number_atom: NUMBER | "(" number_add_expr ")" | UNARY_OP number_atom
+
 currencies: CURRENCY ("," CURRENCY)*
-amount: SIGNED_NUMBER CURRENCY
+amount: number_expr CURRENCY
 
 // Metadata
 METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
@@ -7,7 +21,7 @@ METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
                     | ACCOUNT
                     | CURRENCY
                     | DATE
-                    | SIGNED_NUMBER
+                    | number_expr
                     | TAGS
                     | amount
 metadata_item: METADATA_KEY ":" metadata_value
@@ -19,7 +33,7 @@ annotations: annotation_item+
 ?custom_arg: DATE
     | ACCOUNT
     | ESCAPED_STRING
-    | SIGNED_NUMBER
+    | number_expr
     | CURRENCY
     | BOOLEAN
 
@@ -63,7 +77,7 @@ simple_directive: option
 // Posting
 per_unit_cost: "{" amount "}"
 total_cost: "{{" amount "}}"
-both_cost: "{" SIGNED_NUMBER  "#" amount "}"
+both_cost: "{" number_expr  "#" amount "}"
 dated_cost: "{" amount "," DATE "}"
 ?cost: per_unit_cost | total_cost | both_cost | dated_cost
 
@@ -92,7 +106,7 @@ statement: directive [COMMENT] | COMMENT | SECTION_HEADER
 
 %import .comment.COMMENT
 %import .section_header.SECTION_HEADER
-%import .numbers.SIGNED_NUMBER
+%import .numbers.NUMBER
 %import .account.ACCOUNT
 %import .flag.FLAG
 %import .currency.CURRENCY

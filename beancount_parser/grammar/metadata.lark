@@ -3,7 +3,7 @@ METADATA_KEY: LCASE_LETTER (LETTER | DIGIT | "-" | "_")*
                     | ACCOUNT
                     | CURRENCY
                     | DATE
-                    | SIGNED_NUMBER
+                    | number_expr
                     | TAGS
                     | AMOUNT
 metadata_item: METADATA_KEY ":" metadata_value
@@ -15,7 +15,7 @@ metadata_line: metadata_item [COMMENT]
 
 %import .comment.COMMENT
 %import .account.ACCOUNT
-%import .numbers.SIGNED_NUMBER
+%import .numbers.number_expr
 %import .currency.CURRENCY
 %import .tag.TAGS
 %import .date.DATE
