@@ -13,7 +13,6 @@ def open_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "2022-03-31 open Assets",
         "2022-03-31 open Assets:Bank",
         "2022-03-31 open Assets:Bank USD",
         "2022-03-31 open Assets:Bank USD,BTC",
@@ -29,12 +28,13 @@ def test_parse_open(open_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "open Assets",
+        "open Assets:Bank",
         "2022-03-1 open Assets:Bank",
         "2022-03 open Assets:Bank USD",
+        "2022-03-31 open Assets",
         "2022-03-31 open Assets:Bank 123",
         '2022-03-31 open USD,BTC "STRICT"',
-        '2022-03-31 open assets USD,BTC "NONE"',
+        '2022-03-31 open assets:bank USD,BTC "NONE"',
     ],
 )
 def test_parse_bad_open(open_parser: Lark, text: str):

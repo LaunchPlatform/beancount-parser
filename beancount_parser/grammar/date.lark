@@ -3,7 +3,7 @@ TWO_DIGIT: DIGIT~2
 YEAR: FOUR_DIGIT
 MONTH: TWO_DIGIT
 DAY: TWO_DIGIT
-// Date is given higher priority as if NUMBER or SIGNED_NUMBER is in the list of
+// Date is given higher priority as if NUMBER or number_expr is in the list of
 // candidate for a rule
 DATE.10: YEAR "-" MONTH "-" DAY
 

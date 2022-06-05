@@ -13,8 +13,8 @@ def posting_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "Assets 10 USD",
-        "Assets -10 USD",
+        "Assets:Bank 10 USD",
+        "Assets:Bank -10 USD",
         "Assets:Bank -10.0 USD",
         "Assets:Bank -10.0 TWD",
         "Assets:Bank -10.0 TWD @ 2.56 USD",
@@ -41,7 +41,7 @@ def test_parse_posting(posting_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "Assets 10",
+        "Assets:Bank 10",
         "a -10 USD",
         "@ Assets:Bank -10.0 TWD",
     ],

@@ -13,7 +13,7 @@ def document_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        '2022-03-31 document Assets "/path/to/the/file.pdf"',
+        '2022-03-31 document Assets:Bank "/path/to/the/file.pdf"',
     ],
 )
 def test_parse_document(document_parser: Lark, text: str):
@@ -23,8 +23,8 @@ def test_parse_document(document_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        'document Assets "this account looks good"',
-        "2022-03-31 document Assets",
+        'document Assets:Bank "this account looks good"',
+        "2022-03-31 document Assets:Bank",
     ],
 )
 def test_parse_bad_document(document_parser: Lark, text: str):

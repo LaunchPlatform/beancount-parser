@@ -13,7 +13,6 @@ def close_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "2022-03-31 close Assets",
         "2022-03-31 close Assets:Bank",
     ],
 )
@@ -24,7 +23,8 @@ def test_parse_close(close_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "close Assets",
+        "close Assets:Bank",
+        "2022-03-31 close Assets",
         "2022-03 close Assets:Bank",
         "2022-03-31 close Assets:Bank USD",
         "2022-03-31 close",
