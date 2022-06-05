@@ -1,7 +1,7 @@
-ACCOUNT_CHAR: LETTER | DIGIT | "-"
-ACCOUNT_COMPONENT: (UCASE_LETTER | DIGIT) ACCOUNT_CHAR*
-ACCOUNT: UCASE_LETTER ACCOUNT_CHAR* [":" ACCOUNT_COMPONENT]*
+// See: https://github.com/beancount/beancount/blob/e1716b492c7619682a6d7c33c4873aa41954af1e/beancount/parser/lexer.l#L129-L130
 
-%import common.DIGIT
-%import common.LETTER
-%import common.UCASE_LETTER
+NON_ASCII: /[^\x00-\x7f]/
+
+ACCOUNT_TYPE: (/[A-Z]/ | NON_ASCII) (/[A-Za-z0-9\-]/ | NON_ASCII)*
+ACCOUNT_NAME: (/[A-Z0-9]/ | NON_ASCII) (/[A-Za-z0-9\-]/ | NON_ASCII)*
+ACCOUNT: ACCOUNT_TYPE (":" ACCOUNT_NAME)+

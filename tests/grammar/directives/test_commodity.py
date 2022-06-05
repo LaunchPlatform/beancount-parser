@@ -24,7 +24,7 @@ def test_parse_commodity(commodity_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "commodity Assets",
+        "commodity Assets:Bank",
         "2022-03-1 commodity Assets:Bank",
         "2022-03 commodity USD",
         "2022-03-31 commodity Assets:Bank ",

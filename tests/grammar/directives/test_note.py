@@ -13,7 +13,7 @@ def note_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        '2022-03-31 note Assets "this account looks good"',
+        '2022-03-31 note Assets:Foo "this account looks good"',
     ],
 )
 def test_parse_note(note_parser: Lark, text: str):
@@ -23,8 +23,8 @@ def test_parse_note(note_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        'note Assets "this account looks good"',
-        "2022-03-31 note Assets",
+        'note Assets:Foo "this account looks good"',
+        "2022-03-31 note Assets:Foo",
     ],
 )
 def test_parse_bad_note(note_parser: Lark, text: str):

@@ -13,7 +13,7 @@ def pad_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "2022-03-31 pad Assets Expenses",
+        "2022-03-31 pad Assets:Bank Equity:Opening-Balances",
     ],
 )
 def test_parse_pad(pad_parser: Lark, text: str):
@@ -23,7 +23,7 @@ def test_parse_pad(pad_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "pad Assets",
+        "pad Assets:Bank",
         "2022-03-1 pad Assets:Bank",
         "2022-03 pad Assets:Bank USD",
         "2022-03-31 pad Assets:Bank 123",

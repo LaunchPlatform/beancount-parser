@@ -13,25 +13,22 @@ def account_parser(make_parser: typing.Callable) -> Lark:
 @pytest.mark.parametrize(
     "text",
     [
-        "Assets",
         "Assets:A",
         "Assets:2",
         "Assets:Ab",
         "Assets:AA",
+        "Assets:银行",
+        "Assets:A银行",
         "Assets:Banks:AMEX",
         "Assets:Banks:WellsFargo",
         "Assets:Banks:Wells-Fargo",
         "Assets:Banks:Chase",
-        "Expenses",
         "Expenses:Housing",
         "Expenses:Travel",
-        "Liabilities",
         "Liabilities:CreditCard",
-        "Income",
         "Income:Contracting",
         "Income:ProjectNumber8",
         "Equity:My1stHouse",
-        "Foobar",
         "Foobar:Eggs:Spam",
     ],
 )
@@ -42,11 +39,17 @@ def test_parse_account(account_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
+        "Assets",
+        "Expenses",
+        "Income",
+        "Liabilities",
+        "Foobar",
         "assets:bank",
         "Assets:bank",
         ":Assets",
         "Assets:",
         "Assets::Banks:AMEX",
+        'USD',
     ],
 )
 def test_parse_bad_account(account_parser: Lark, text: str):
