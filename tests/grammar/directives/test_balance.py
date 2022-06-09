@@ -15,6 +15,7 @@ def balance_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31 balance Assets:Bank 12.34 + 23.45 USD",
         "2022-03-31 balance Assets:Bank 45.67 BTC",
+        "2022-03-31 balance Assets:Bank 12.34 ~ 0.01 USD",
     ],
 )
 def test_parse_balance(balance_parser: Lark, text: str):
@@ -29,6 +30,7 @@ def test_parse_balance(balance_parser: Lark, text: str):
         "2022-03-1 balance Assets:Bank",
         "2022-03 balance Assets:Bank USD",
         "2022-03-31 balance Assets:Bank 123",
+        "2022-03-31 balance Assets:Bank 12.34 USD ~ 0.01 USD",
     ],
 )
 def test_parse_bad_open(balance_parser: Lark, text: str):
