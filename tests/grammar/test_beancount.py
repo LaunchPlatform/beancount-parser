@@ -112,6 +112,20 @@ def parser() -> Lark:
             Expenses:Electricity                      50.10 USD
             Assets:Checking                          -50.10 USD
             """
+        ),
+        # test links
+        dedent(
+            """\
+        2022-03-31 "foo" "bar" ^foo ^foo.bar ^foo_bar ^foo-bar
+            Assets:MyBank 12.34 USD
+            """
+        ),
+        # test tags
+        dedent(
+            """\
+        2022-03-31 "foo" "bar" #foo #foo.bar #foo_bar #foo-bar
+            Assets:MyBank 12.34 USD
+            """
         )
     ],
 )

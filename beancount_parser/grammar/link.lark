@@ -1,4 +1,4 @@
-LINK: "^" (LETTER | DIGIT | "-" | "_")+
+LINK: "^" (LETTER | DIGIT | "-" | "_" | ".")+
 
 %import common.LETTER
 %import common.DIGIT
