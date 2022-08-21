@@ -127,20 +127,6 @@ def parser() -> Lark:
         2014-03-08 M "foo" "bar"
             """
         ),
-        # test links
-        dedent(
-            """\
-        2022-03-31 "foo" "bar" ^foo ^foo.bar ^foo_bar ^foo-bar
-            Assets:MyBank 12.34 USD
-            """
-        ),
-        # test tags
-        dedent(
-            """\
-        2022-03-31 "foo" "bar" #foo #foo.bar #foo_bar #foo-bar
-            Assets:MyBank 12.34 USD
-            """
-        )
     ],
 )
 def test_parse(parser: Lark, text: str):

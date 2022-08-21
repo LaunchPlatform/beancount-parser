@@ -16,6 +16,8 @@ def tag_parser(make_parser: typing.Callable) -> Lark:
         "#abc",
         "#a123",
         "#this-is-fine",
+        "#this.is.also.fine",
+        "#so_is_this"
     ],
 )
 def test_parse_tag(tag_parser: Lark, text: str):
