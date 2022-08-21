@@ -19,6 +19,7 @@ def open_parser(make_parser: typing.Callable) -> Lark:
         '2022-03-31 open Assets:Bank USD,BTC "STRICT"',
         '2022-03-31 open Assets:Bank "STRICT"',
         '2022-03-31 open Assets:Bank USD,BTC "NONE"',
+        '2022-03-1 open Assets:Bank',
     ],
 )
 def test_parse_open(open_parser: Lark, text: str):
@@ -29,7 +30,6 @@ def test_parse_open(open_parser: Lark, text: str):
     "text",
     [
         "open Assets:Bank",
-        "2022-03-1 open Assets:Bank",
         "2022-03 open Assets:Bank USD",
         "2022-03-31 open Assets",
         "2022-03-31 open Assets:Bank 123",
