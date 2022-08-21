@@ -105,6 +105,14 @@ def parser() -> Lark:
         '2022-04-20 * "First transaction"\n  Assets:Account1  -1 USD\n  Assets:Account2     1 USD\n   \n2022-04-20 * "Second transaction"\n   Assets:Account1 1 USD\n   Assets:Account2  -1 USD',
         "\n\n\n",
         "",
+        # test forecast transactions
+        dedent(
+            """\
+        2014-03-08 # "Electricity bill [MONTHLY]"
+            Expenses:Electricity                      50.10 USD
+            Assets:Checking                          -50.10 USD
+            """
+        )
     ],
 )
 def test_parse(parser: Lark, text: str):
