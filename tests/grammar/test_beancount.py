@@ -113,6 +113,20 @@ def parser() -> Lark:
             Assets:Checking                          -50.10 USD
             """
         ),
+        # test transaction flags
+        dedent(
+            """\
+        2014-03-08 * "foo" "bar"
+        2014-03-08 ! "foo" "bar"
+        2014-03-08 P "foo" "bar"
+        2014-03-08 S "foo" "bar"
+        2014-03-08 T "foo" "bar"
+        2014-03-08 C "foo" "bar"
+        2014-03-08 U "foo" "bar"
+        2014-03-08 R "foo" "bar"
+        2014-03-08 M "foo" "bar"
+            """
+        ),
         # test links
         dedent(
             """\
