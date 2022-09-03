@@ -1,4 +1,6 @@
-LINK: "^" (LETTER | DIGIT | "-" | "_" | ".")+
+// Source: https://github.com/beancount/beancount/blob/a6352005a466bf3377d7caf5b1570d3bd08207fe/beancount/parser/lexer.l#L243
+
+LINK: "^" (LETTER | DIGIT | "-" | "_" | "." | "/")+
 
 %import common.LETTER
 %import common.DIGIT

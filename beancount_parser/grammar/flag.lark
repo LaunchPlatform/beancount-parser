@@ -1,13 +1,2 @@
-// See https://github.com/beancount/beancount/blob/v2/beancount/core/flags.py
-// for context
-INCOMPLETE: "!"
-COMPLETED: "*"
-PADDING: "P"
-SUMMARIZE: "S"
-TRANSFER: "T"
-CONVERSIONS: "C"
-UNREALIZED: "U"
-RETURNS: "R"
-MERGING: "M"
-FORECAST: "#"
-FLAG: INCOMPLETE | COMPLETED | PADDING | SUMMARIZE | TRANSFER | CONVERSIONS | UNREALIZED | RETURNS | MERGING | FORECAST
+// Source: https://github.com/beancount/beancount/blob/a6352005a466bf3377d7caf5b1570d3bd08207fe/beancount/parser/lexer.l#L135
+FLAG: "*" | "!" | "&" | "#" | "?" | "%" | "P" | "S" | "T" | "C" | "U" | "R" | "M"

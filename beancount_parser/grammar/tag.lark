@@ -1,4 +1,6 @@
-TAG: "#" (LETTER | DIGIT | "-" | "_" | ".")+
+// Source: https://github.com/beancount/beancount/blob/a6352005a466bf3377d7caf5b1570d3bd08207fe/beancount/parser/lexer.l#L238
+
+TAG: "#" (LETTER | DIGIT | "-" | "_" | "." | "/")+
 TAGS: TAG [_WS_INLINE+ TAG]
 
 %import common.LETTER
