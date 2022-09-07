@@ -15,6 +15,12 @@ def date_parser(make_parser: typing.Callable) -> Lark:
     [
         "2022-03-31",
         "1970-01-01",
+        "2022/03/31",
+        "1970/01/01",
+        "2022-03/31",
+        "20222-03-31",
+        "1970-1-01",
+        "1970-1-1",
     ],
 )
 def test_parse_date(date_parser: Lark, text: str):
@@ -24,9 +30,7 @@ def test_parse_date(date_parser: Lark, text: str):
 @pytest.mark.parametrize(
     "text",
     [
-        "20222-03-31",
-        "1970-1-01",
-        "1970-1-1",
+        "2022--01"
         "foobar",
     ],
 )

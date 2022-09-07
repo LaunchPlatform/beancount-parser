@@ -1,10 +1,12 @@
-FOUR_DIGIT: DIGIT~4
-TWO_DIGIT: DIGIT~2
+// Source: https://github.com/beancount/beancount/blob/a6352005a466bf3377d7caf5b1570d3bd08207fe/beancount/parser/lexer.l#L212
+
+FOUR_DIGIT: DIGIT DIGIT DIGIT DIGIT+
+TWO_DIGIT: DIGIT+
 YEAR: FOUR_DIGIT
 MONTH: TWO_DIGIT
 DAY: TWO_DIGIT
 // Date is given higher priority as if NUMBER or number_expr is in the list of
 // candidate for a rule
-DATE.10: YEAR "-" MONTH "-" DAY
+DATE.10: YEAR ("-" | "/") MONTH ("-" | "/") DAY
 
 %import common.DIGIT
