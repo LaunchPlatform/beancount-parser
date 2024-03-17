@@ -7,6 +7,8 @@ UNARY_OP.-10: "+" | "-"
 ADD_OP: "+" | "-"
 MUL_OP: "*" | "/"
 
+ASTERISK: "*"
+
 number_expr: number_add_expr
 ?number_add_expr: number_mul_expr (ADD_OP number_mul_expr)*
 ?number_mul_expr: number_atom (MUL_OP number_atom)*
@@ -76,11 +78,11 @@ simple_directive: option
                  | plugin
 
 // Posting
-per_unit_cost: "{" amount "}"
 total_cost: "{{" amount "}}"
 both_cost: "{" number_expr  "#" amount "}"
-dated_cost: "{" amount "," DATE "}"
-?cost: per_unit_cost | total_cost | both_cost | dated_cost
+cost_spec: "{" cost_item ["," cost_item]* "}"
+cost_item: amount | DATE | ESCAPED_STRING | ASTERISK
+?cost: total_cost | both_cost | cost_spec
 
 per_unit_price: "@" amount
 total_price: "@@" amount
