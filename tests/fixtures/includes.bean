@@ -1,0 +1,8 @@
+; comment0
+include "foo.bean"
+
+2024-05-05 open Assets:Cash
+
+; comment1
+include "bar.bean"
+include "2024/*.bean"
