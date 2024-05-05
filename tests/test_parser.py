@@ -40,6 +40,7 @@ def test_extract_includes(
         ("nested", ["main.bean", "a/file0.bean", "a/b/file1.bean"]),
         ("glob", ["main.bean", "a/file0.bean", "a/b/file1.bean", "a/b/file2.bean"]),
         ("circular", ["main.bean", "file0.bean", "file1.bean"]),
+        ("contain_root_dir", ["main.bean"]),
     ],
 )
 def test_traverse(

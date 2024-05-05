@@ -55,7 +55,7 @@ def traverse(
         for include in includes:
             target_file = current_file.parent / include
             for matched_file in glob.glob(str(target_file)):
-                matched_file = pathlib.Path(matched_file).absolute()
+                matched_file = pathlib.Path(matched_file).resolve().absolute()
                 if root_dir not in matched_file.parents:
                     # ensure include cannot go above the root folder, to avoid any potential security risk
                     continue
