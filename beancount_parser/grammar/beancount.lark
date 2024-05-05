@@ -80,7 +80,7 @@ simple_directive: option
 // Posting
 total_cost: "{{" amount "}}"
 both_cost: "{" number_expr  "#" amount "}"
-cost_spec: "{" cost_item ["," cost_item]* "}"
+cost_spec: "{" (cost_item ("," cost_item)*)? "}"
 cost_item: amount | DATE | ESCAPED_STRING | ASTERISK
 ?cost: total_cost | both_cost | cost_spec
 

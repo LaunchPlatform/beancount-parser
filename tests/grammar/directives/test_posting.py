@@ -36,6 +36,7 @@ def posting_parser(make_parser: typing.Callable) -> Lark:
         'Assets:Bank -10.0 TWD { "my-label", 2021-06-07, 100.56 USD }',
         'Assets:Bank -10.0 TWD { "my-label", 2021-06-07, 100.56 USD, * }',
         "Assets:Bank -10.0 TWD { * }",
+        "Assets:Bank -10.0 TWD {}",
         "! Assets:Bank -10.0 TWD",
         "* Assets:Bank -10.0 TWD",
     ],
