@@ -19,7 +19,7 @@ def get_entry_type(statement: Tree) -> EntryType:
         raise ValueError(f"Unexpected first child type {first_child.data}")
 
 
-def collect_entries(tree: Tree) -> tuple[list[Tree], list[Entry]]:
+def collect_entries(tree: Tree) -> tuple[list[Entry], list[Tree]]:
     entries: list[Entry] = []
     comments: list[Tree] = []
     for statement in tree.children:
@@ -72,4 +72,4 @@ def collect_entries(tree: Tree) -> tuple[list[Tree], list[Entry]]:
             )
             entries.append(entry)
             comments = []
-    return comments, entries
+    return entries, comments
