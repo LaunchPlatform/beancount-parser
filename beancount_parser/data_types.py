@@ -5,7 +5,7 @@ from lark import Tree
 
 
 @enum.unique
-class EntryType(enum.StrEnum):
+class EntryType(str, enum.Enum):
     # Date directives
     OPEN = "OPEN"
     CLOSE = "CLOSE"
