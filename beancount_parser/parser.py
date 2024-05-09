@@ -44,7 +44,7 @@ def traverse(
     logger = logging.getLogger(__name__)
     visited_bean_files: set[pathlib.Path] = set()
 
-    if root_dir is not None:
+    if root_dir is None:
         root_dir = bean_file.parent.absolute()
     pending_files = [bean_file.absolute()]
 
