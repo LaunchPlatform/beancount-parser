@@ -19,9 +19,9 @@ def parser() -> Lark:
         (
             "includes.bean",
             [
-                "foo.bean",
-                "bar.bean",
-                "2024/*.bean",
+                ("foo.bean", 2),
+                ("bar.bean", 7),
+                ("2024/*.bean", 8),
             ],
         )
     ],
